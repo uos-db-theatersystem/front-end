@@ -1,0 +1,31 @@
+@font-face {
+	font-family: NanumsquareR;
+	src: url(./Nanumsquare_ac_TTF/NanumSquare_acR.ttf);
+}
+@font-face {
+	font-family: NanumsquareL;
+	src: url(./Nanumsquare_ac_TTF/NanumSquare_acL.ttf);
+}
+@font-face {
+	font-family: NanumsquareB;
+	src: url(./Nanumsquare_ac_TTF/NanumSquare_acB.ttf);
+}
+@font-face {
+	font-family: NanumsquareEB;
+	src: url(./Nanumsquare_ac_TTF/NanumSquare_acEB.ttf);
+}
+html,
+body {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: NanumsquareL;
+}

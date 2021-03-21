@@ -1,0 +1,34 @@
+.movie-thumb {
+	color: white;
+	position: relative;
+	width: 294px;
+	height: 420px;
+	transition: 1s ease;
+	border-radius: 7px;
+	overflow: hidden;
+	cursor: pointer;
+	img {
+		width: 100%;
+	}
+	.thumb-info {
+		opacity: 0;
+		transition: 0.5s ease;
+		background-color: rgba(0, 0, 0, 0.486);
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		padding: 10%;
+		p {
+			width: 100%;
+			word-wrap: break-word;
+			font-weight: bold;
+		}
+	}
+	&:hover {
+		.thumb-info {
+			transition: 0.5s ease;
+			opacity: 1;
+		}
+	}
+}
