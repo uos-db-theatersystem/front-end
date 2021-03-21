@@ -1,20 +1,49 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Head from 'next/head';
+import MovieThumb from '../components/MovieThumb';
+import { Button } from '@material-ui/core';
 
 const Index = () => {
 	let id: Number = 1;
 	return (
 		<Layout>
 			<Head>
-				<title>Index 페이지</title>
+				<title>Theater</title>
 			</Head>
-			<h1>안녕, Next.js {id}</h1>
-			<h2>
-				<Link href="/about">
-					<a style={{ background: 'black', color: 'white' }}>소개</a>
-				</Link>
-			</h2>
+			<p id="main-title">현재 상영작</p>
+			<div id="main-container">
+				<div className="main-movie">
+					<MovieThumb />
+					<Button variant="outlined" color="primary">
+						예매하기
+					</Button>
+				</div>
+				<div className="main-movie">
+					<MovieThumb />
+					<Button variant="outlined" color="primary">
+						예매하기
+					</Button>
+				</div>
+				<div className="main-movie">
+					<MovieThumb />
+					<Button variant="outlined" color="primary">
+						예매하기
+					</Button>
+				</div>
+				<div className="main-movie">
+					<MovieThumb />
+					<Button variant="outlined" color="primary">
+						예매하기
+					</Button>
+				</div>
+				<div className="main-movie">
+					<MovieThumb />
+					<Button variant="outlined" color="primary">
+						예매하기
+					</Button>
+				</div>
+			</div>
 		</Layout>
 	);
 };

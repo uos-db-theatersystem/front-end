@@ -6,6 +6,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-bottom: 1px solid rgb(128, 128, 128);
 	#header-logo {
 		left: 1px;
 		position: absolute;
@@ -17,11 +18,11 @@
 		right: 1%;
 		top: 1%;
 		position: absolute;
-		color: white;
+		color: rgb(182, 182, 182);
 		font-size: 0.9rem;
 		cursor: pointer;
 		#header-login:hover {
-			border-bottom: 1px solid rgb(202, 201, 201);
+			border-bottom: 1px solid rgb(223, 223, 223);
 		}
 	}
 	Button {

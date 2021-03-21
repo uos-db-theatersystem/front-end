@@ -1,0 +1,39 @@
+#main-title {
+	width: 100%;
+	margin: 0 0;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	height: 1.7rem;
+	text-align: center;
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: white;
+	background-color: black;
+}
+#main-container {
+	background: linear-gradient(
+		to bottom,
+		rgb(0, 0, 0),
+		rgb(34, 30, 30),
+		rgb(58, 46, 46)
+	);
+	width: 100vw;
+	min-height: 100vh;
+	color: white;
+	padding: 1% 12%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.main-movie {
+		width: 294px;
+		margin-bottom: 10px;
+		Button {
+			margin-top: 2%;
+			width: 100%;
+			background-color: rgb(0, 205, 212);
+			color: white;
+			font-size: 1.3rem;
+		}
+	}
+}
