@@ -1,0 +1,17 @@
+#header-container {
+	width: 100%;
+	font-size: 2rem;
+	border-bottom: 1px solid white;
+	background-color: black;
+	Button {
+		color: white;
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin: 0.5%;
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.836);
+			color: black;
+			transition: 0.5s ease;
+		}
+	}
+}

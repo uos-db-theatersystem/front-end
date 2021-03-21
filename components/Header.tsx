@@ -1,18 +1,19 @@
 import Link from 'next/link';
+import { Button } from '@material-ui/core';
 
 const linkStyle = {
 	marginRight: '1rem',
 };
 const Header = () => {
 	return (
-		<div>
+		<header id="header-container">
 			<Link href="/">
-				<a style={linkStyle}>홈</a>
+				<Button>홈</Button>
 			</Link>
 			<Link href="/about">
-				<a style={linkStyle}>소개</a>
+				<Button>소개</Button>
 			</Link>
-		</div>
+		</header>
 	);
 };
 
