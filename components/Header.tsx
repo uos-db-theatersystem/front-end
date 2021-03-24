@@ -9,7 +9,7 @@ const Header = () => {
 		<header id="header-container">
 			<Link href="/">
 				<b id="header-logo" title="home">
-					Theater
+					서울시네마
 				</b>
 			</Link>
 			<Link href="/">
@@ -25,11 +25,11 @@ const Header = () => {
 				<Button>마이 페이지</Button>
 			</Link>
 			<div id="header-log">
-				<Link href="/">
+				<Link href="/login">
 					<b id="header-login">로그인</b>
 				</Link>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<Link href="/about">
+				<Link href="/signup">
 					<b id="header-login">회원 가입</b>
 				</Link>
 			</div>
