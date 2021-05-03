@@ -18,6 +18,12 @@ const detail = () => {
 					</Button>
 				</div>
 			</div>
+			<ul>
+				<li>줄거리</li>
+				<li>출연 배우</li>
+				<li>감독</li>
+				<li>배급사</li>
+			</ul>
 		</Layout>
 	);
 };

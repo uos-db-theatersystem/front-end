@@ -5,7 +5,7 @@ import Link from 'next/link';
 const MovieThumb = () => {
 	return (
 		<div className="movie-thumb">
-			<Link href="/about">
+			<Link href="/detail">
 				<div>
 					<img src="https://img.megabox.co.kr/SharedImg/2021/03/11/ZW5kivGPf9YF7Yoxz0N8EeV8VV89Sf0x_420.jpg" />
 					<div className="thumb-info">
