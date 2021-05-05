@@ -12,10 +12,10 @@ const Header = () => {
 					서울시네마
 				</b>
 			</Link>
-			<Link href="/">
+			<Link href="/search">
 				<Button>영화 검색</Button>
 			</Link>
-			<Link href="/about">
+			<Link href="/reservation">
 				<Button>예매하기</Button>
 			</Link>
 			<Link href="/about">
