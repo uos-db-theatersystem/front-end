@@ -1,0 +1,29 @@
+.search-container {
+	width: 100%;
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.search-header {
+	width: 60%;
+	display: grid;
+	grid-template-columns: 11fr 1fr;
+	margin-bottom: 10px;
+}
+.search-input {
+	font-size: 2rem;
+	width: 100%;
+}
+.search-list {
+	overflow-y: auto;
+	font-size: 2rem;
+	width: 60%;
+	height: 80vh;
+	border: 3px solid rgb(219, 219, 219);
+	border-radius: 10px;
+}
+.search-item {
+	text-align: center;
+}
