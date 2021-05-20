@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 
-const linkStyle = {
-	marginRight: '1rem',
-};
 const Header = () => {
 	return (
 		<header id="header-container">

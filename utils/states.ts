@@ -6,5 +6,3 @@ const movieState = atom<movieListProps[]>({
 });
 
 export { movieState };
-
-//
