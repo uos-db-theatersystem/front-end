@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-import { movieProps } from './interface';
-const movieState = atom<movieProps[]>({
+import { movieListProps } from './interface';
+const movieState = atom<movieListProps[]>({
 	key: 'movieState',
 	default: [],
 });
