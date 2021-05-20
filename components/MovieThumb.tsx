@@ -1,14 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import { movieThumbProps } from '../utils/interface';
 
-const MovieThumb = () => {
+const MovieThumb = ({ movie_num, movie_poster_url, movie_description }: movieThumbProps) => {
 	return (
 		<div className="movie-thumb">
-			<Link href="/detail">
+			<Link href="/detail/[id]" as={`/detail/${movie_num}`}>
 				<div>
-					<img src="https://img.megabox.co.kr/SharedImg/2021/03/11/ZW5kivGPf9YF7Yoxz0N8EeV8VV89Sf0x_420.jpg" />
+					<img src={movie_poster_url} />
 					<div className="thumb-info">
-						<p>영화 내용1232132132131232132132132132132131</p>
+						<p>{movie_description}</p>
 					</div>
 				</div>
 			</Link>

@@ -1,16 +1,16 @@
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import { Paper } from '@material-ui/core';
-import { useRecoilState } from 'recoil';
-import { nameState } from '../components/states';
+// import { useRecoilState } from 'recoil';
+// import { nameState } from '../utils/states';
 import React from 'react';
 
 const About = () => {
-	const [name, setNameState] = useRecoilState(nameState);
+	// const [name, setNameState] = useRecoilState(nameState);
 
-	const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setNameState(e.target.value);
-	};
+	// const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setNameState(e.target.value);
+	// };
 
 	return (
 		<Layout>
