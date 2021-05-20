@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
-
+import { useSetRecoilState } from 'recoil';
+import { modalState } from '../utils/states';
+import { LoginModal } from './index';
 const Header = () => {
+	const setOpen = useSetRecoilState(modalState);
 	return (
 		<header id="header-container">
+			<LoginModal />
 			<Link href="/">
 				<b id="header-logo" title="home">
 					서울시네마
@@ -22,9 +26,14 @@ const Header = () => {
 				<Button>마이 페이지</Button>
 			</Link>
 			<div id="header-log">
-				<Link href="/login">
-					<b id="header-login">로그인</b>
-				</Link>
+				<b
+					id="header-login"
+					onClick={() => {
+						setOpen(true);
+					}}
+				>
+					로그인
+				</b>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<Link href="/signup">
 					<b id="header-login">회원 가입</b>
