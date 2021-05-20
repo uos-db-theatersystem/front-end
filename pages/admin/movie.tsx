@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import { Layout } from '../../components/index';
 import { movieApi } from '../../utils/api';
 import { postMovieProps } from '../../utils/interface';
 const movie = () => {
@@ -45,7 +46,7 @@ const movie = () => {
 		}
 	};
 	return (
-		<>
+		<Layout>
 			<h1 id="movie-header">영화 추가</h1>
 			<div id="movie-container" onChange={handleInput}>
 				<TextField
@@ -119,7 +120,7 @@ const movie = () => {
 					추가하기
 				</Button>
 			</div>
-		</>
+		</Layout>
 	);
 };
 

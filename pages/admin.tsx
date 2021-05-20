@@ -1,13 +1,8 @@
 import Link from 'next/link';
-
+import { Layout } from '../components/index';
 const admin = () => {
 	return (
-		<div className="admin-container">
-			<title>관리자 페이지</title>
-			<header id="admin-header">관리자 페이지</header>
-			<Link href="/">
-				<a id="admin-logout">logout</a>
-			</Link>
+		<Layout>
 			<div id="admin-menus">
 				<Link href="/admin/movie">
 					<button className="admin-menu">영화등록</button>
@@ -22,7 +17,7 @@ const admin = () => {
 					<button className="admin-menu">매출조회</button>
 				</Link>
 			</div>
-		</div>
+		</Layout>
 	);
 };
 

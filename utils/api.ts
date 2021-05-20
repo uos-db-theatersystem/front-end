@@ -38,6 +38,17 @@ const movieApi = {
 			throw new Error(e);
 		}
 	},
+	deleteMovie: async (id: number) => {
+		try {
+			const res = await axios.delete(`/api/movies/${id}`);
+			if (res.status !== 200) {
+				throw new Error('deleteMovie에러');
+			}
+			alert('영화를 성공적으로 삭제했습니다.');
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 
 export { movieApi };
