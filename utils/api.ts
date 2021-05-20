@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { movieListProps, movieProps } from './interface';
+import { postMovieProps, movieListProps, movieProps } from './interface';
 
 const movieApi = {
 	getList: async (): Promise<movieListProps[]> => {
@@ -20,6 +20,20 @@ const movieApi = {
 				throw new Error('getInfo에러');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postMovie: async (data: postMovieProps) => {
+		try {
+			const res = await axios.post('/api/movies', {
+				...data,
+				genres: data.genres.replace(' ', '').split(','),
+			});
+			if (res.status !== 201) {
+				throw new Error('postMovie에러');
+			}
+			alert('영화를 성공적으로 추가했습니다.');
 		} catch (e) {
 			throw new Error(e);
 		}

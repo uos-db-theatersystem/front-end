@@ -26,3 +26,15 @@ export interface movieProps {
 	movie_poster_url: string;
 	running_time: number;
 }
+export interface postMovieProps {
+	actor_names: string;
+	director_name: string;
+	distributor_name: string;
+	genres: string;
+	is_screening: string;
+	movie_description: string;
+	movie_name: string;
+	moviegrade_num: string;
+	movie_poster_url: string;
+	running_time: number;
+}
