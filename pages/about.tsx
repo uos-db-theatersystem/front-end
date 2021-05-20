@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import { Paper } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
-import { nameState } from '../components/states';
+import { nameState } from '../utils/states';
 import React from 'react';
 
 const About = () => {

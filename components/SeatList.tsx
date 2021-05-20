@@ -22,6 +22,7 @@ const SeatList = () => {
 										fontWeight: 'bold',
 										width: '30px',
 									}}
+									disabled={false}
 									size="small"
 									selected={selected}
 									data-pos={`${ch}${num}`}

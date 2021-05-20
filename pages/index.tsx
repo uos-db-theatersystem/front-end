@@ -1,12 +1,15 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Head from 'next/head';
-import MovieThumb from '../components/MovieThumb';
+import { MovieThumb, BottomMenu } from '../components/index';
 import { Button } from '@material-ui/core';
-import BottomMenu from '../components/BottomMenu';
-
+import { useEffect } from 'react';
+import { movieApi } from '../utils/api';
 // 현재 상영작, 메인 페이지
 const Index = () => {
+	useEffect(() => {
+		movieApi.getList();
+	}, []);
 	let id: Number = 1;
 	return (
 		<Layout>
