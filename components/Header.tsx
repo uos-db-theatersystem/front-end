@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
 import { LoginModal } from './index';
+import Router from 'next/router';
 const Header = () => {
 	const setOpen = useSetRecoilState(modalState);
 	return (
@@ -25,20 +26,34 @@ const Header = () => {
 			<Link href="/about">
 				<Button>마이 페이지</Button>
 			</Link>
-			<div id="header-log">
-				<b
-					id="header-login"
-					onClick={() => {
-						setOpen(true);
-					}}
-				>
-					로그인
-				</b>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<Link href="/signup">
-					<b id="header-login">회원 가입</b>
-				</Link>
-			</div>
+			{localStorage.getItem('Token') ? (
+				<div id="header-log">
+					<b
+						id="header-login"
+						onClick={() => {
+							localStorage.removeItem('Token');
+							Router.reload();
+						}}
+					>
+						로그아웃
+					</b>
+				</div>
+			) : (
+				<div id="header-log">
+					<b
+						id="header-login"
+						onClick={() => {
+							setOpen(true);
+						}}
+					>
+						로그인
+					</b>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+					<Link href="/signup">
+						<b id="header-login">회원 가입</b>
+					</Link>
+				</div>
+			)}
 		</header>
 	);
 };

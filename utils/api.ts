@@ -51,7 +51,28 @@ const movieApi = {
 	},
 };
 const authApi = {
-	login: async (data: loginProps) => {},
-	register: async (data: signUpProps) => {},
+	login: async (data: loginProps) => {
+		try {
+			const res = await axios.get('/api/auth', { data: { ...data } });
+			if (res.status === 401) {
+				alert('입력하신 정보가 존재하지 않습니다.');
+				return;
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	register: async (data: signUpProps) => {
+		try {
+			const res = await axios.post('/api/auth', data);
+			if (res.status !== 200) {
+				alert('회원가입 도중 오류가 발생했습니다.');
+				throw new Error('register error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 export { movieApi, authApi };

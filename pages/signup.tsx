@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from 'react';
 import { Layout } from '../components/index';
 import { Paper, TextField, Button } from '@material-ui/core';
 import { signUpProps } from '../utils/interface';
+import { authApi } from '../utils/api';
+import Router from 'next/router';
 
 const signup = () => {
 	const [info, setInfo] = useState<signUpProps>({
@@ -30,6 +32,13 @@ const signup = () => {
 		if (!/^[0-9]{6}$/.test(info.birth)) {
 			alert('생년월일을 양식에 맞게 입력해주세요.');
 			return;
+		}
+		try {
+			await authApi.register(info);
+			alert('회원가입이 완료되었습니다. 다시 로그인 해주세요.');
+			Router.push('/');
+		} catch (e) {
+			throw new Error(e);
 		}
 	};
 	return (

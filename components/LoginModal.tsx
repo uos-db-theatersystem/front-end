@@ -4,6 +4,7 @@ import { Modal, TextField, Button } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
 import { loginProps } from '../utils/interface';
+import { authApi } from '../utils/api';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -27,6 +28,20 @@ const LoginModal = () => {
 	const handleClose = () => {
 		setOpen(false);
 	};
+	const handleClick = async () => {
+		if (info.email === '' || info.password === '') {
+			alert('모든 정보를 입력해주세요.');
+			return;
+		}
+		try {
+			const { Token } = await authApi.login(info);
+			console.log(Token);
+			localStorage.setItem('Token', Token);
+			setOpen(false);
+		} catch (e) {
+			throw new Error(e);
+		}
+	};
 	return (
 		<Modal open={open} onClose={handleClose}>
 			<div className={classes.paper} id="modal-container">
@@ -49,6 +64,7 @@ const LoginModal = () => {
 					}}
 				/>
 				<Button
+					onClick={handleClick}
 					style={{ width: '300px', fontWeight: 'bold' }}
 					variant="outlined"
 					color="primary"
