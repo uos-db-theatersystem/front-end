@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, TextField, Button } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
+import { loginProps } from '../utils/interface';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const LoginModal = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useRecoilState(modalState);
-	const [info, setInfo] = useState({ email: '', password: '' });
+	const [info, setInfo] = useState<loginProps>({ email: '', password: '' });
 	const handleClose = () => {
 		setOpen(false);
 	};

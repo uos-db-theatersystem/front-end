@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { postMovieProps, movieListProps, movieProps } from './interface';
+import { postMovieProps, movieListProps, movieProps, loginProps, signUpProps } from './interface';
 
 const movieApi = {
 	getList: async (): Promise<movieListProps[]> => {
@@ -50,5 +50,8 @@ const movieApi = {
 		}
 	},
 };
-
-export { movieApi };
+const authApi = {
+	login: async (data: loginProps) => {},
+	register: async (data: signUpProps) => {},
+};
+export { movieApi, authApi };

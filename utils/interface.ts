@@ -38,3 +38,15 @@ export interface postMovieProps {
 	movie_poster_url: string;
 	running_time: number;
 }
+export interface loginProps {
+	email: string;
+	password: string;
+}
+export interface signUpProps {
+	customer_name: string;
+	customer_phonenum: string;
+	birth: string;
+	email: string;
+	password: string;
+	user_confirm_password: string;
+}
