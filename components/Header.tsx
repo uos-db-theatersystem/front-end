@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
@@ -6,6 +7,12 @@ import { LoginModal } from './index';
 import Router from 'next/router';
 const Header = () => {
 	const setOpen = useSetRecoilState(modalState);
+	const [isLog, setIsLog] = useState<boolean>(false);
+	useEffect(() => {
+		if (localStorage.getItem('Token')) {
+			setIsLog(true);
+		}
+	}, []);
 	return (
 		<header id="header-container">
 			<LoginModal />
@@ -26,7 +33,7 @@ const Header = () => {
 			<Link href="/about">
 				<Button>마이 페이지</Button>
 			</Link>
-			{localStorage.getItem('Token') ? (
+			{isLog ? (
 				<div id="header-log">
 					<b
 						id="header-login"

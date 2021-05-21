@@ -78,12 +78,14 @@ const signup = () => {
 						name="password"
 						label="비밀번호"
 						variant="outlined"
+						type="password"
 					/>
 					<TextField
 						className="signup-input"
 						name="user_confirm_password"
 						label="비밀번호 확인"
 						variant="outlined"
+						type="password"
 					/>
 					<Button
 						style={{ width: '50%', fontWeight: 'bold', marginTop: '10px' }}

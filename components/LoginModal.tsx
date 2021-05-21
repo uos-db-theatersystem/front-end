@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
 import { loginProps } from '../utils/interface';
 import { authApi } from '../utils/api';
-
+import Router from 'next/router';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		paper: {
@@ -35,11 +35,14 @@ const LoginModal = () => {
 		}
 		try {
 			const { Token } = await authApi.login(info);
-			console.log(Token);
-			localStorage.setItem('Token', Token);
-			setOpen(false);
+			if (Token) {
+				console.log(Token);
+				localStorage.setItem('Token', Token);
+				setOpen(false);
+				Router.reload();
+			}
 		} catch (e) {
-			throw new Error(e);
+			alert('입력하신 정보가 올바르지 않습니다.');
 		}
 	};
 	return (
