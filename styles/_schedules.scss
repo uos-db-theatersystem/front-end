@@ -1,0 +1,16 @@
+#schedules-container {
+	width: 100%;
+	padding: 0 10%;
+}
+#schedules-title {
+	text-align: center;
+	padding: 0;
+}
+.schedules-list {
+	overflow-y: auto;
+	font-size: 1.5rem;
+	width: 60%;
+	height: 70vh;
+	border: 3px solid rgb(219, 219, 219);
+	border-radius: 10px;
+}
