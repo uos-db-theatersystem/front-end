@@ -1,6 +1,7 @@
 import { AppBar, Tab, Tabs, List, ListItem, Divider } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '../components/index';
+import { useRouter } from 'next/router';
 
 const getSchedules = () => {
 	const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -46,11 +47,17 @@ const schedules = () => {
 	const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
 		setValue(newValue);
 	};
-
+	const router = useRouter();
+	const [num, setNum] = useState(null);
+	useEffect(() => {
+		if (!router.isReady) return;
+		console.log(router.query);
+		setNum(router.query.movie_num);
+	}, [router.isReady]);
 	return (
 		<Layout>
 			<div id="schedules-container">
-				<h1 id="schedules-title">상영 일정</h1>
+				<h1 id="schedules-title">{num ? '특정 ' : '전체 '}상영일정</h1>
 				<AppBar position="static" color="default">
 					<Tabs
 						value={value}
@@ -63,6 +70,7 @@ const schedules = () => {
 					>
 						{date.map((_, idx) => (
 							<Tab
+								key={day[idx] + month[idx] + date[idx]}
 								style={{ fontWeight: 'bold' }}
 								label={`${day[idx]}/${month[idx]}/${date[idx]}`}
 								{...a11yProps({ idx })}
@@ -70,7 +78,7 @@ const schedules = () => {
 						))}
 					</Tabs>
 					{date.map((_, idx) => (
-						<TabPanel value={value} index={idx}>
+						<TabPanel value={value} index={idx} key={day[idx] + month[idx] + date[idx]}>
 							<List
 								className="schedules-list"
 								style={{ padding: '0 0', margin: '0 auto' }}
