@@ -50,3 +50,14 @@ export interface signUpProps {
 	password: string;
 	user_confirm_password: string;
 }
+export interface schedulesProps {
+	auditorium_num: number;
+	movie_grade: string;
+	movie_name: string;
+	movie_num: number;
+	running_time: number;
+	screening_cnt: number;
+	screening_date: number;
+	screening_time: number;
+	screeningschedule_num: number;
+}
