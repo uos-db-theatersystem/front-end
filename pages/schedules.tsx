@@ -43,6 +43,21 @@ function TabPanel(props: TabPanelProps) {
 		</div>
 	);
 }
+const getOrderedSchd = (schedules: schedulesProps[]): [[schedulesProps]] => {
+	let orderedSchd;
+	(orderedSchd = []).length = 30;
+	orderedSchd.fill([]);
+	schedules.forEach((schedule) => {
+		let str = String(schedule.screening_date);
+		str = str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6);
+		const idx = new Date(str).getDate() - new Date().getDate();
+		if (idx >= 0 && idx < 30) {
+			orderedSchd[idx].push(schedule);
+		}
+	});
+	return orderedSchd;
+};
+
 const schedules = () => {
 	const [day, month, date] = getSchedules();
 	const [value, setValue] = useState(0);
@@ -50,20 +65,18 @@ const schedules = () => {
 		setValue(newValue);
 	};
 	const router = useRouter();
-	const [num, setNum] = useState(null);
-	const [schedules, setSchedules] = useState<schedulesProps[]>([]);
+	const [schedules, setSchedules] = useState<[[schedulesProps]]>(null);
 	useEffect(() => {
 		if (!router.isReady) return;
-		if (router.query.movie_num) setNum(router.query.movie_num);
 		(async () => {
 			try {
-				const data = await schedulesApi.getSchedules(num);
+				const data = await schedulesApi.getSchedules(router.query.movie_num);
 				if (data.length === 0) {
 					alert('현재 상영하지 않는 영화입니다.');
 					router.push('/');
 					return;
 				}
-				setSchedules(data);
+				setSchedules(getOrderedSchd(data));
 			} catch (e) {
 				throw new Error(e);
 			}
@@ -72,7 +85,7 @@ const schedules = () => {
 	return (
 		<Layout>
 			<div id="schedules-container">
-				<h1 id="schedules-title">{num ? schedules[0].movie_name : '전체'}&nbsp;상영일정</h1>
+				<h1 id="schedules-title">상영일정</h1>
 				<AppBar position="static" color="default">
 					<Tabs
 						value={value}
@@ -92,22 +105,30 @@ const schedules = () => {
 							/>
 						))}
 					</Tabs>
-					{date.map((_, idx) => (
-						<TabPanel value={value} index={idx} key={day[idx] + month[idx] + date[idx]}>
-							<List
-								className="schedules-list"
-								style={{ padding: '0 0', margin: '0 auto' }}
-								component="nav"
+					{schedules &&
+						date.map((_, idx) => (
+							<TabPanel
+								value={value}
+								index={idx}
+								key={day[idx] + month[idx] + date[idx]}
 							>
-								<div>
-									<ListItem style={{ padding: '0 10px' }} button>
-										<p>d</p>
-									</ListItem>
-									<Divider />
-								</div>
-							</List>
-						</TabPanel>
-					))}
+								<List
+									className="schedules-list"
+									style={{ padding: '0 0', margin: '0 auto' }}
+									component="nav"
+								>
+									{schedules[idx].map((schedule) => (
+										<div>
+											<ListItem style={{ padding: '0 10px' }} button>
+												<b>{schedule.movie_name}</b>
+												<b>{schedule.movie_grade}</b>
+											</ListItem>
+											<Divider />
+										</div>
+									))}
+								</List>
+							</TabPanel>
+						))}
 				</AppBar>
 			</div>
 		</Layout>

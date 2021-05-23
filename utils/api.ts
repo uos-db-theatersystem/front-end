@@ -83,8 +83,10 @@ const authApi = {
 	},
 };
 const schedulesApi = {
-	getSchedules: async (id?: number) => {
+	getSchedules: async (id): Promise<schedulesProps[]> => {
 		try {
+			console.log(`/api/schedules${id ? `?movie_num=${id}` : ''}`);
+
 			const res = await axios.post(`/api/schedules${id ? `?movie_num=${id}` : ''}`);
 			if (res.status !== 200) {
 				throw new Error('schedules error');
