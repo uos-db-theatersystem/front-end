@@ -2,6 +2,8 @@ import { AppBar, Tab, Tabs, List, ListItem, Divider } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { Layout } from '../components/index';
 import { useRouter } from 'next/router';
+import { schedulesApi } from '../utils/api';
+import { schedulesProps } from '../utils/interface';
 
 const getSchedules = () => {
 	const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -49,15 +51,28 @@ const schedules = () => {
 	};
 	const router = useRouter();
 	const [num, setNum] = useState(null);
+	const [schedules, setSchedules] = useState<schedulesProps[]>([]);
 	useEffect(() => {
 		if (!router.isReady) return;
-		console.log(router.query);
-		setNum(router.query.movie_num);
+		if (router.query.movie_num) setNum(router.query.movie_num);
+		(async () => {
+			try {
+				const data = await schedulesApi.getSchedules(num);
+				if (data.length === 0) {
+					alert('현재 상영하지 않는 영화입니다.');
+					router.push('/');
+					return;
+				}
+				setSchedules(data);
+			} catch (e) {
+				throw new Error(e);
+			}
+		})();
 	}, [router.isReady]);
 	return (
 		<Layout>
 			<div id="schedules-container">
-				<h1 id="schedules-title">{num ? '특정 ' : '전체 '}상영일정</h1>
+				<h1 id="schedules-title">{num ? schedules[0].movie_name : '전체'}&nbsp;상영일정</h1>
 				<AppBar position="static" color="default">
 					<Tabs
 						value={value}

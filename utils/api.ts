@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { postMovieProps, movieListProps, movieProps, loginProps, signUpProps } from './interface';
+import {
+	postMovieProps,
+	movieListProps,
+	movieProps,
+	loginProps,
+	signUpProps,
+	schedulesProps,
+} from './interface';
 
 const movieApi = {
 	getList: async (): Promise<movieListProps[]> => {
@@ -75,4 +82,17 @@ const authApi = {
 		}
 	},
 };
-export { movieApi, authApi };
+const schedulesApi = {
+	getSchedules: async (id?: number) => {
+		try {
+			const res = await axios.post(`/api/schedules${id ? `?movie_num=${id}` : ''}`);
+			if (res.status !== 200) {
+				throw new Error('schedules error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+export { movieApi, authApi, schedulesApi };
