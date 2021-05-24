@@ -13,6 +13,6 @@
 ## how to run
 
 ```sh
-npm install
+yarn install
 yarn dev
 ```
