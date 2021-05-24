@@ -1,13 +1,18 @@
 # front-end
 
-react next js typescript recoil
-환경설정 참고 문서
+데이터베이스 설계 수업 영화 예매 프로젝트 프론트엔드
 
--   https://velog.io/@cyranocoding/Next-js-%EA%B5%AC%EB%8F%99%EB%B0%A9%EC%8B%9D-%EA%B3%BC-getInitialProps
+## used tech
 
--   https://ichi.pro/ko/next-js-peuleim-wokeueseo-recoil-js-laibeuleolileul-sayonghaneun-bangbeob-56827103260264
+-   react hook
+-   next js
+-   typescript
+-   recoil
+-   material ui
 
-```cmd
+## how to run
+
+```sh
 npm install
 yarn dev
 ```
