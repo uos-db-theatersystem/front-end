@@ -14,3 +14,24 @@
 	border: 3px solid rgb(219, 219, 219);
 	border-radius: 10px;
 }
+.schedules-item {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 5fr 1fr;
+	font-weight: bold;
+}
+.schedules-left,
+.schedules-mid,
+.schedules-right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.schedules-mid {
+	border-left: 3px solid rgb(221, 221, 221);
+	border-right: 3px solid rgb(221, 221, 221);
+}
+.schedules-right {
+	font-size: 1rem;
+	text-align: center;
+}

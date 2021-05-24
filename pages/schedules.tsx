@@ -43,10 +43,11 @@ function TabPanel(props: TabPanelProps) {
 		</div>
 	);
 }
-const getOrderedSchd = (schedules: schedulesProps[]): [[schedulesProps]] => {
-	let orderedSchd;
-	(orderedSchd = []).length = 30;
-	orderedSchd.fill([]);
+const getOrderedSchd = (schedules: schedulesProps[]): schedulesProps[][] => {
+	const orderedSchd: schedulesProps[][] = [];
+	for (let i = 0; i < 30; i++) {
+		orderedSchd.push([]);
+	}
 	schedules.forEach((schedule) => {
 		let str = String(schedule.screening_date);
 		str = str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6);
@@ -65,7 +66,8 @@ const schedules = () => {
 		setValue(newValue);
 	};
 	const router = useRouter();
-	const [schedules, setSchedules] = useState<[[schedulesProps]]>(null);
+	const [schedules, setSchedules] = useState<schedulesProps[][]>(null);
+
 	useEffect(() => {
 		if (!router.isReady) return;
 		(async () => {
@@ -119,9 +121,27 @@ const schedules = () => {
 								>
 									{schedules[idx].map((schedule) => (
 										<div>
-											<ListItem style={{ padding: '0 10px' }} button>
-												<b>{schedule.movie_name}</b>
-												<b>{schedule.movie_grade}</b>
+											<ListItem button style={{ padding: '0 0' }}>
+												<div className="schedules-item">
+													<div className="schedules-left">
+														{String(schedule.screening_time).slice(
+															0,
+															2
+														) +
+															':' +
+															String(schedule.screening_time).slice(
+																2
+															)}
+													</div>
+													<div className="schedules-mid">
+														<h3>{schedule.movie_name}</h3>
+													</div>
+													<div className="schedules-right">
+														상영{schedule.auditorium_num}관<br />
+														상영시간:{schedule.running_time}분<br />
+														{schedule.movie_grade}
+													</div>
+												</div>
 											</ListItem>
 											<Divider />
 										</div>
