@@ -39,7 +39,7 @@ const Index = () => {
 										movie_poster_url={movie.movie_poster_url}
 										movie_description={movie.movie_description}
 									/>
-									<Link href="/detail/[id]" as={`/detail/${movie.movie_num}`}>
+									<Link href={`/schedules?movie_num=${movie.movie_num}`}>
 										<Button variant="outlined" color="primary">
 											예매하기
 										</Button>

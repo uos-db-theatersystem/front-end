@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Layout from '../..//components/Layout';
 import { Button } from '@material-ui/core';
 import { movieApi } from '../../utils/api';
@@ -28,9 +29,11 @@ const detail = () => {
 					<img id="detail-img" src={info.movie_poster_url} />
 					<div id="detail-head">
 						<b>{info.movie_name}</b>
-						<Button variant="outlined" color="primary">
-							예매하기
-						</Button>
+						<Link href={`/schedules?movie_num=${info.movie_num}`}>
+							<Button variant="outlined" color="primary">
+								예매하기
+							</Button>
+						</Link>
 					</div>
 				</div>
 				<div id="detail-info">

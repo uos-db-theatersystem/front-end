@@ -24,7 +24,7 @@ const Header = () => {
 			<Link href="/search">
 				<Button>영화 검색</Button>
 			</Link>
-			<Link href="/reservation">
+			<Link href="/schedules">
 				<Button>예매하기</Button>
 			</Link>
 			<Link href="/about">

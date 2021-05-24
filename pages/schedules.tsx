@@ -119,33 +119,39 @@ const schedules = () => {
 									style={{ padding: '0 0', margin: '0 auto' }}
 									component="nav"
 								>
-									{schedules[idx].map((schedule) => (
-										<div>
-											<ListItem button style={{ padding: '0 0' }}>
-												<div className="schedules-item">
-													<div className="schedules-left">
-														{String(schedule.screening_time).slice(
-															0,
-															2
-														) +
-															':' +
-															String(schedule.screening_time).slice(
+									{schedules[idx].length !== 0 ? (
+										schedules[idx].map((schedule) => (
+											<div>
+												<ListItem button style={{ padding: '0 0' }}>
+													<div className="schedules-item">
+														<div className="schedules-left">
+															{String(schedule.screening_time).slice(
+																0,
 																2
-															)}
+															) +
+																':' +
+																String(
+																	schedule.screening_time
+																).slice(2)}
+														</div>
+														<div className="schedules-mid">
+															<h3>{schedule.movie_name}</h3>
+														</div>
+														<div className="schedules-right">
+															상영{schedule.auditorium_num}관<br />
+															상영시간:{schedule.running_time}분<br />
+															{schedule.movie_grade}
+														</div>
 													</div>
-													<div className="schedules-mid">
-														<h3>{schedule.movie_name}</h3>
-													</div>
-													<div className="schedules-right">
-														상영{schedule.auditorium_num}관<br />
-														상영시간:{schedule.running_time}분<br />
-														{schedule.movie_grade}
-													</div>
-												</div>
-											</ListItem>
-											<Divider />
-										</div>
-									))}
+												</ListItem>
+												<Divider />
+											</div>
+										))
+									) : (
+										<h2 style={{ textAlign: 'center' }}>
+											해당 날짜에 상영 예정인 영화가 없습니다.
+										</h2>
+									)}
 								</List>
 							</TabPanel>
 						))}
