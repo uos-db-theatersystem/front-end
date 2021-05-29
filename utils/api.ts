@@ -6,6 +6,7 @@ import {
 	loginProps,
 	signUpProps,
 	schedulesProps,
+	productProps,
 } from './interface';
 
 const movieApi = {
@@ -95,4 +96,17 @@ const schedulesApi = {
 		}
 	},
 };
-export { movieApi, authApi, schedulesApi };
+const productsApi = {
+	getProducts: async (): Promise<productProps[]> => {
+		try {
+			const res = await axios.get('/api/products');
+			if (res.status !== 200) {
+				throw new Error('products error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+export { movieApi, authApi, schedulesApi, productsApi };

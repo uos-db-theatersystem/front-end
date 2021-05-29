@@ -61,3 +61,11 @@ export interface schedulesProps {
 	screening_time: number;
 	screeningschedule_num: number;
 }
+export interface productProps {
+	product_description: string;
+	product_image_url: string;
+	product_name: string;
+	product_num: number;
+	product_price: number;
+	product_type: string;
+}

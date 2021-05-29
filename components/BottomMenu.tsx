@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { Movie, EventNote } from '@material-ui/icons';
+import { Movie, EventNote, Fastfood } from '@material-ui/icons';
+import Link from 'next/link';
 
 const BottomMenu = () => {
 	return (
@@ -13,6 +14,12 @@ const BottomMenu = () => {
 				<Movie />
 				&nbsp; 박스오피스
 			</Button>
+			<Link href="/product">
+				<Button>
+					<Fastfood />
+					&nbsp; 상품관
+				</Button>
+			</Link>
 		</div>
 	);
 };
