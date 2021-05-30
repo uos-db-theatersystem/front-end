@@ -17,7 +17,7 @@ const movies = () => {
 		})();
 	}, []);
 	const handleClick = async (e: any) => {
-		const { name, dataset } = e.target;
+		const { name, dataset } = e.target.closest('button');
 
 		if (name === 'delete') {
 			try {
@@ -32,10 +32,15 @@ const movies = () => {
 	return (
 		<Layout>
 			<h1 id="movie-header">영화 목록</h1>
-			<List className="search-list" style={{ padding: '0 0' }} component="nav">
+			<List
+				className="search-list"
+				style={{ padding: '0 0' }}
+				component="nav"
+				onClick={handleClick}
+			>
 				{movies.map((movie) => (
 					<div key={movie.movie_num}>
-						<ListItem onClick={handleClick}>
+						<ListItem>
 							<p>{movie.movie_name}</p>
 							<div style={{ marginLeft: 'auto' }}>
 								<IconButton name="edit" data-id={movie.movie_num}>

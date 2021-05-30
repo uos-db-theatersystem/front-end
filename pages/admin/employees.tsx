@@ -15,15 +15,31 @@ const employees = () => {
 			}
 		})();
 	}, []);
-	const handleClick = () => {};
+	const handleClick = async (e: any) => {
+		const { name, dataset } = e.target.closest('button');
+
+		if (name === 'delete') {
+			try {
+				await employeesApi.deleteEmployees(dataset.id);
+				setEmployees(employees.filter((employee) => employee.emp_id !== dataset.id));
+			} catch (e) {
+				throw new Error(e);
+			}
+		}
+	};
 
 	return (
 		<Layout>
 			<h1 style={{ textAlign: 'center' }}>직원 목록</h1>
-			<List className="search-list" style={{ padding: '0 0' }} component="nav">
+			<List
+				className="search-list"
+				style={{ padding: '0 0' }}
+				component="nav"
+				onClick={handleClick}
+			>
 				{employees.map((employee) => (
 					<div key={Number(employee.emp_phonenum)}>
-						<ListItem onClick={handleClick}>
+						<ListItem>
 							<p>{employee.emp_name}</p>
 							<div style={{ marginLeft: 'auto' }}>
 								<IconButton name="edit" data-id={employee.emp_id}>
