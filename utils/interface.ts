@@ -69,3 +69,13 @@ export interface productProps {
 	product_price: number;
 	product_type: string;
 }
+export interface employeeProps {
+	contract_hourly_wage: number;
+	contract_salary: number;
+	department_name: String;
+	emp_grade: String;
+	emp_id: String;
+	emp_name: String;
+	emp_phonenum: String;
+	is_admin: String;
+}
