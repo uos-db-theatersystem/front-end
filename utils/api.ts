@@ -122,5 +122,15 @@ const employeesApi = {
 			throw new Error(e);
 		}
 	},
+	deleteEmployees: async (id: String) => {
+		try {
+			const res = await axios.delete(`/api/employees/${id}`);
+			if (res.status !== 200) {
+				throw new Error('employees error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 export { movieApi, authApi, schedulesApi, productsApi, employeesApi };
