@@ -7,6 +7,7 @@ import {
 	signUpProps,
 	schedulesProps,
 	productProps,
+	employeeProps,
 } from './interface';
 
 const movieApi = {
@@ -109,4 +110,17 @@ const productsApi = {
 		}
 	},
 };
-export { movieApi, authApi, schedulesApi, productsApi };
+const employeesApi = {
+	getEmployees: async (): Promise<employeeProps[]> => {
+		try {
+			const res = await axios.get('/api/employees');
+			if (res.status !== 200) {
+				throw new Error('employees error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+export { movieApi, authApi, schedulesApi, productsApi, employeesApi };
