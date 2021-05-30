@@ -21,6 +21,7 @@ const product = () => {
 			<div id="product-container">
 				{products.map((product) => (
 					<ProductMenu
+						key={product.product_num}
 						name={product.product_name}
 						desc={product.product_description}
 						url={product.product_image_url}
