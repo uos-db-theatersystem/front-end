@@ -8,6 +8,10 @@ import {
 	schedulesProps,
 	productProps,
 	employeeProps,
+	newReserveProps,
+	reservationNumProps,
+	seatProps,
+	seatReserveProps,
 } from './interface';
 
 const movieApi = {
@@ -133,4 +137,40 @@ const employeesApi = {
 		}
 	},
 };
-export { movieApi, authApi, schedulesApi, productsApi, employeesApi };
+const reservationApi = {
+	postNewReservation: async (data: newReserveProps): Promise<reservationNumProps> => {
+		try {
+			const res = await axios.post('/api/reservation', data);
+			if (res.status !== 200) {
+				throw new Error('newReservation error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	getSeatInfo: async ({ schedule_num, auditorium_num }): Promise<seatProps[]> => {
+		try {
+			const res = await axios.get(
+				`/api/reservation/seat?schedule_num=${schedule_num}&&auditorium_num=${auditorium_num}`
+			);
+			if (res.status !== 200) {
+				throw new Error('getSeatInfo error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postReservation: async (data: seatReserveProps) => {
+		try {
+			const res = await axios.post('/api/reservation/seat', data);
+			if (res.status !== 200) {
+				throw new Error('reservation error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+export { movieApi, authApi, schedulesApi, productsApi, employeesApi, reservationApi };

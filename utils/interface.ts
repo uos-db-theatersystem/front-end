@@ -83,6 +83,9 @@ export interface newReserveProps {
 	screeningschedule_num: number;
 	customer_num: number;
 }
+export interface reservationNumProps {
+	reservation_num: number;
+}
 export interface seatProps {
 	col: number;
 	row: number;
