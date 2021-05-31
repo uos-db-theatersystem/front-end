@@ -79,3 +79,17 @@ export interface employeeProps {
 	emp_phonenum: String;
 	is_admin: String;
 }
+export interface newReserveProps {
+	screeningschedule_num: number;
+	customer_num: number;
+}
+export interface seatProps {
+	col: number;
+	row: number;
+	seat_id: number;
+}
+export interface seatReserveProps {
+	schedule_num: number;
+	reservation_num: number;
+	seat_num: number[];
+}

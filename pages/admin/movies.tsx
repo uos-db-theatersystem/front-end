@@ -7,6 +7,8 @@ import { ListItem, List, Divider, IconButton } from '@material-ui/core';
 import { Close, Edit } from '@material-ui/icons';
 const movies = () => {
 	const [movies, setMovies] = useRecoilState(movieState);
+	console.log('movies', movies);
+
 	useEffect(() => {
 		(async () => {
 			try {
