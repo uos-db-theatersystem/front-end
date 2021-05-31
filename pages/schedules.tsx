@@ -90,9 +90,14 @@ const schedules = () => {
 	const handleClick = async (e: any) => {
 		const { dataset } = e.target.closest('.schedules-item');
 		console.log(dataset);
-		router.push(
-			`/reservation?schedule_num=${dataset.schedule_num}&&auditorium_num=${dataset.auditorium_num}`
-		);
+		router.push({
+			pathname: '/reservation',
+			query: {
+				schedule_num: dataset.schedule_num,
+				auditorium_num: dataset.auditorium_num,
+				name: dataset.name,
+			},
+		});
 	};
 
 	return (
@@ -143,6 +148,7 @@ const schedules = () => {
 														data-auditorium_num={
 															schedule.auditorium_num
 														}
+														data-name={schedule.movie_name}
 													>
 														<div className="schedules-left">
 															{String(schedule.screening_time).slice(

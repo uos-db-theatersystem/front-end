@@ -11,7 +11,6 @@ import {
 	employeeProps,
 	newReserveProps,
 	reservationNumProps,
-	seatProps,
 	seatReserveProps,
 } from './interface';
 
@@ -150,7 +149,7 @@ const reservationApi = {
 			throw new Error(e);
 		}
 	},
-	getSeatInfo: async ({ schedule_num, auditorium_num }): Promise<seatProps[]> => {
+	getSeatInfo: async ({ schedule_num, auditorium_num }): Promise<number[][]> => {
 		try {
 			const res = await axios.get(
 				`/api/reservation/seat?schedule_num=${schedule_num}&&auditorium_num=${auditorium_num}`

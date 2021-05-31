@@ -1,0 +1,14 @@
+#reservation-container {
+	display: flex;
+	justify-content: center;
+}
+#reservation-side {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border-radius: 10px;
+	border: rgb(123, 123, 248) 5px solid;
+	Button {
+		font-weight: bold;
+	}
+}
