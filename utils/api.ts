@@ -4,6 +4,7 @@ import {
 	movieListProps,
 	movieProps,
 	loginProps,
+	userProps,
 	signUpProps,
 	schedulesProps,
 	productProps,
@@ -64,7 +65,7 @@ const movieApi = {
 	},
 };
 const authApi = {
-	login: async (data: loginProps) => {
+	login: async (data: loginProps): Promise<userProps> => {
 		try {
 			const res = await axios.post('/api/auth/login', data);
 			if (res.status === 401) {

@@ -10,7 +10,6 @@ import { useRecoilState } from 'recoil';
 // 현재 상영작, 메인 페이지
 const Index = () => {
 	const [movies, setMovies] = useRecoilState(movieState);
-	console.log('movies', movies);
 	useEffect(() => {
 		(async () => {
 			try {

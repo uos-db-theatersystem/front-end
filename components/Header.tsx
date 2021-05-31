@@ -39,6 +39,7 @@ const Header = () => {
 						id="header-login"
 						onClick={() => {
 							localStorage.removeItem('Token');
+							localStorage.removeItem('userNum');
 							Router.reload();
 						}}
 					>

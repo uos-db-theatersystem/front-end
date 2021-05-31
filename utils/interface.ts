@@ -42,6 +42,10 @@ export interface loginProps {
 	email: string;
 	password: string;
 }
+export interface userProps {
+	Token: string;
+	user_num: number;
+}
 export interface signUpProps {
 	customer_name: string;
 	customer_phonenum: string;

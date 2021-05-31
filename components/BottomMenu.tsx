@@ -6,10 +6,12 @@ import Link from 'next/link';
 const BottomMenu = () => {
 	return (
 		<div id="bottom-container">
-			<Button>
-				<EventNote />
-				&nbsp; 상영시간표
-			</Button>
+			<Link href="/schedules">
+				<Button>
+					<EventNote />
+					&nbsp; 상영시간표
+				</Button>
+			</Link>
 			<Button>
 				<Movie />
 				&nbsp; 박스오피스

@@ -34,10 +34,10 @@ const LoginModal = () => {
 			return;
 		}
 		try {
-			const { Token } = await authApi.login(info);
+			const { Token, user_num } = await authApi.login(info);
 			if (Token) {
-				console.log(Token);
 				localStorage.setItem('Token', Token);
+				localStorage.setItem('userNum', String(user_num));
 				setOpen(false);
 				Router.reload();
 			}

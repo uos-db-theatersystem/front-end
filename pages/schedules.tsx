@@ -2,7 +2,7 @@ import { AppBar, Tab, Tabs, List, ListItem, Divider } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { Layout } from '../components/index';
 import { useRouter } from 'next/router';
-import { schedulesApi } from '../utils/api';
+import { schedulesApi, reservationApi } from '../utils/api';
 import { schedulesProps } from '../utils/interface';
 
 const getSchedules = () => {
@@ -51,7 +51,9 @@ const getOrderedSchd = (schedules: schedulesProps[]): schedulesProps[][] => {
 	schedules.forEach((schedule) => {
 		let str = String(schedule.screening_date);
 		str = str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6);
-		const idx = new Date(str).getDate() - new Date().getDate();
+		const idx = Math.ceil(
+			(new Date(str).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
+		);
 		if (idx >= 0 && idx < 30) {
 			orderedSchd[idx].push(schedule);
 		}
@@ -84,6 +86,15 @@ const schedules = () => {
 			}
 		})();
 	}, [router.isReady]);
+
+	const handleClick = async (e: any) => {
+		const { dataset } = e.target.closest('.schedules-item');
+		console.log(dataset);
+		router.push(
+			`/reservation?schedule_num=${dataset.schedule_num}&&auditorium_num=${dataset.auditorium_num}`
+		);
+	};
+
 	return (
 		<Layout>
 			<div id="schedules-container">
@@ -118,12 +129,21 @@ const schedules = () => {
 									className="schedules-list"
 									style={{ padding: '0 0', margin: '0 auto' }}
 									component="nav"
+									onClick={handleClick}
 								>
 									{schedules[idx].length !== 0 ? (
 										schedules[idx].map((schedule) => (
-											<div>
+											<div key={schedule.screeningschedule_num}>
 												<ListItem button style={{ padding: '0 0' }}>
-													<div className="schedules-item">
+													<div
+														className="schedules-item"
+														data-schedule_num={
+															schedule.screeningschedule_num
+														}
+														data-auditorium_num={
+															schedule.auditorium_num
+														}
+													>
 														<div className="schedules-left">
 															{String(schedule.screening_time).slice(
 																0,
