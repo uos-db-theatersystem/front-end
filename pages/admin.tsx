@@ -10,6 +10,9 @@ const admin = () => {
 				<Link href="/admin/movies">
 					<button className="admin-menu">영화관리</button>
 				</Link>
+				<Link href="/admin/employee">
+					<button className="admin-menu">직원등록</button>
+				</Link>
 				<Link href="/admin/employees">
 					<button className="admin-menu">직원관리</button>
 				</Link>

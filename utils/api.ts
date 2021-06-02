@@ -113,6 +113,16 @@ const productsApi = {
 			throw new Error(e);
 		}
 	},
+	deleteProduct: async (data: number) => {
+		try {
+			const res = await axios.delete(`/api/products/${data}`);
+			if (res.status !== 200) {
+				throw new Error('product delete error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 const employeesApi = {
 	getEmployees: async (): Promise<employeeProps[]> => {
