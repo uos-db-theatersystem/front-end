@@ -8,13 +8,16 @@ const admin = () => {
 					<button className="admin-menu">영화등록</button>
 				</Link>
 				<Link href="/admin/movies">
-					<button className="admin-menu">영화수정</button>
+					<button className="admin-menu">영화관리</button>
 				</Link>
 				<Link href="/admin/employees">
 					<button className="admin-menu">직원관리</button>
 				</Link>
 				<Link href="/admin/profit">
 					<button className="admin-menu">매출조회</button>
+				</Link>
+				<Link href="/admin/product">
+					<button className="admin-menu">상품관리</button>
 				</Link>
 			</div>
 		</Layout>

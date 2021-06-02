@@ -162,12 +162,13 @@ const reservationApi = {
 			throw new Error(e);
 		}
 	},
-	postReservation: async (data: seatReserveProps) => {
+	postReservation: async (data: seatReserveProps): Promise<reservationNumProps> => {
 		try {
 			const res = await axios.post('/api/reservation/seat', data);
 			if (res.status !== 200) {
 				throw new Error('reservation error');
 			}
+			return res.data;
 		} catch (e) {
 			throw new Error(e);
 		}
