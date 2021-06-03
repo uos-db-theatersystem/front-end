@@ -82,6 +82,7 @@ export interface employeeProps {
 	emp_name: String;
 	emp_phonenum: String;
 	is_admin: String;
+	emp_pw: String;
 }
 export interface newReserveProps {
 	screeningschedule_num: number;
