@@ -42,6 +42,10 @@ export interface loginProps {
 	email: string;
 	password: string;
 }
+export interface nonLoginProps {
+	name: string;
+	phone_number: string;
+}
 export interface userProps {
 	Token: string;
 	user_num: number;
@@ -98,6 +102,6 @@ export interface seatProps {
 }
 export interface seatReserveProps {
 	schedule_num: number;
-	reservation_num: number;
+	customer_num: number;
 	seat_num: number[];
 }

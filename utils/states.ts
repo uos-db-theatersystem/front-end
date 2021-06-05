@@ -5,8 +5,9 @@ const movieState = atom<movieListProps[]>({
 	default: [],
 });
 
-const modalState = atom<boolean>({
+const modalState = atom<{ login: boolean; nonLogin: boolean }>({
 	key: 'modalState',
-	default: false,
+	default: { login: false, nonLogin: false },
 });
+
 export { movieState, modalState };

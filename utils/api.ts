@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { createCipher } from 'crypto';
 import {
 	postMovieProps,
 	movieListProps,
 	movieProps,
 	loginProps,
+	nonLoginProps,
 	userProps,
 	signUpProps,
 	schedulesProps,
@@ -83,6 +85,18 @@ const authApi = {
 				alert('회원가입 도중 오류가 발생했습니다.');
 				throw new Error('register error');
 			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	nonLogin: async (data: nonLoginProps): Promise<{ user_num: number }> => {
+		try {
+			const res = await axios.post('/api/auth/nonmembers', data);
+			if (res.status !== 200) {
+				alert('비회원 정보를 입력도중 오류가 발생했습니다.');
+				throw new Error('nonLogin error');
+			}
+			return res.data;
 		} catch (e) {
 			throw new Error(e);
 		}

@@ -51,7 +51,7 @@ const Header = () => {
 					<b
 						id="header-login"
 						onClick={() => {
-							setOpen(true);
+							setOpen({ login: true, nonLogin: false });
 						}}
 					>
 						로그인
