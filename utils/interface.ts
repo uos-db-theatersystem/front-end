@@ -105,3 +105,18 @@ export interface seatReserveProps {
 	customer_num: number;
 	seat_num: number[];
 }
+export interface paymentProps {
+	reservation_num: number;
+	payment_type: string;
+	standard_price: number;
+	is_point_used: string;
+	used_point: number;
+	payment_price: number;
+	dcnt_after_price: number;
+	is_payment_canceled: string;
+	dcnt_num: number;
+	card_comp_name: string;
+	card_num: string;
+	sender_name: string;
+	sender_accountnum: string;
+}
