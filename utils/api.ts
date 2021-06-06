@@ -32,6 +32,17 @@ const movieApi = {
 			throw new Error(e);
 		}
 	},
+	getSearch: async (data: string): Promise<movieListProps[]> => {
+		try {
+			const res = await axios.get(`/api/movies?search=${data}`);
+			if (res.status !== 200) {
+				throw new Error('getSearch에러');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 	getInfo: async (id): Promise<movieProps> => {
 		try {
 			const res = await axios.get(`/api/movies/${id}`);
