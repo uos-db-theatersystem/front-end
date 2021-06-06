@@ -1,9 +1,18 @@
-#profit-header {
+.profit-header {
 	text-align: center;
 }
 #profit-container {
 	margin-top: 15px;
 	width: 50%;
+	height: 400px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+}
+#profit-wage-container {
+	border-right: 3px solid rgb(218, 218, 218);
+}
+#profit-sales {
+	text-align: center;
+	font-weight: bold;
+	padding: 50px 0px;
 }
