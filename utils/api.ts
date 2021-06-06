@@ -222,7 +222,7 @@ const reservationApi = {
 	getSeatInfo: async ({ schedule_num, auditorium_num }): Promise<number[][]> => {
 		try {
 			const res = await axios.get(
-				`/api/reservation/seat?schedule_num=${schedule_num}&&auditorium_num=${auditorium_num}`
+				`/api/reservation?schedule_num=${schedule_num}&&auditorium_num=${auditorium_num}`
 			);
 			if (res.status !== 200) {
 				throw new Error('getSeatInfo error');
@@ -234,7 +234,7 @@ const reservationApi = {
 	},
 	postReservation: async (data: seatReserveProps): Promise<reservationNumProps> => {
 		try {
-			const res = await axios.post('/api/reservation/seat', data);
+			const res = await axios.post('/api/reservation', data);
 			if (res.status !== 200) {
 				throw new Error('reservation error');
 			}
