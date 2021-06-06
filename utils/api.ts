@@ -16,6 +16,8 @@ import {
 	newReserveProps,
 	reservationNumProps,
 	seatReserveProps,
+	dateProps,
+	wageProps,
 } from './interface';
 
 const movieApi = {
@@ -224,6 +226,32 @@ const reservationApi = {
 			const res = await axios.post('/api/reservation/seat', data);
 			if (res.status !== 200) {
 				throw new Error('reservation error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+const profitApi = {
+	getWage: async ({ from_date, to_date }: dateProps): Promise<wageProps[]> => {
+		try {
+			const res = await axios.get(
+				`/api/workhistories/wage?from_date=${from_date}&to_date=${to_date}`
+			);
+			if (res.status !== 200) {
+				throw new Error('getWage error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	getSales: async ({ from_date, to_date }: dateProps): Promise<{ sales: number }> => {
+		try {
+			const res = await axios.get(`/api/sales?from_date=${from_date}&to_date=${to_date}`);
+			if (res.status !== 200) {
+				throw new Error('getSales error');
 			}
 			return res.data;
 		} catch (e) {

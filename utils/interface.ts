@@ -128,3 +128,12 @@ export interface paymentProps {
 	sender_name: string;
 	sender_accountnum: string;
 }
+export interface dateProps {
+	from_date: string;
+	to_date: string;
+}
+export interface wageProps {
+	emp_id: string;
+	emp_name: string;
+	wage: number;
+}

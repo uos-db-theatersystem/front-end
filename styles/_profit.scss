@@ -1,3 +1,9 @@
 #profit-header {
 	text-align: center;
 }
+#profit-container {
+	margin-top: 15px;
+	width: 50%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
