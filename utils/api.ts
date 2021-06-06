@@ -259,4 +259,4 @@ const profitApi = {
 		}
 	},
 };
-export { movieApi, authApi, schedulesApi, productsApi, employeesApi, reservationApi };
+export { movieApi, authApi, schedulesApi, productsApi, employeesApi, reservationApi, profitApi };
