@@ -88,6 +88,14 @@ export interface employeeProps {
 	is_admin: String;
 	emp_pw: String;
 }
+export interface employeeLoginProps {
+	emp_id: string;
+	emp_password: string;
+}
+export interface employeeInfoProps {
+	Token: string;
+	is_admin: 'Y' | 'N';
+}
 export interface newReserveProps {
 	screeningschedule_num: number;
 	customer_num: number;

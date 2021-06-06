@@ -11,6 +11,8 @@ import {
 	schedulesProps,
 	productProps,
 	employeeProps,
+	employeeLoginProps,
+	employeeInfoProps
 	newReserveProps,
 	reservationNumProps,
 	seatReserveProps,
@@ -160,6 +162,17 @@ const employeesApi = {
 			throw new Error(e);
 		}
 	},
+	postLogin:async(data:employeeLoginProps):Promise<employeeInfoProps>=>{
+		try{
+			const res=await axios.post('api/employee/login');
+			if(res.status!==200){
+				throw new Error('employee login error')
+			}
+			return res.data;
+		}catch(e){
+			throw new Error(e);
+		}
+	}
 };
 const reservationApi = {
 	postNewReservation: async (data: newReserveProps): Promise<reservationNumProps> => {
