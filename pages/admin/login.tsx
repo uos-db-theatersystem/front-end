@@ -19,7 +19,7 @@ const login = () => {
 				if (is_admin === 'Y') {
 					Router.push('/admin');
 				} else {
-					Router.push('/admin/attendance');
+					Router.push({ pathname: '/admin/attendance', query: { id: info.emp_id } });
 				}
 			}
 		} catch (e) {
@@ -27,7 +27,7 @@ const login = () => {
 		}
 	};
 	return (
-		<div id="modal-container">
+		<div id="modal-container" style={{ marginTop: '200px' }}>
 			<h1>직원 로그인</h1>
 			<TextField
 				style={{ width: '300px' }}

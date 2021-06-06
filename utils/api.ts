@@ -164,11 +164,31 @@ const employeesApi = {
 	},
 	postLogin: async (data: employeeLoginProps): Promise<employeeInfoProps> => {
 		try {
-			const res = await axios.post('api/employee/login');
+			const res = await axios.post('/api/employees/login', data);
 			if (res.status !== 200) {
 				throw new Error('employee login error');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postAttend: async (emp_id: string) => {
+		try {
+			const res = await axios.post('/api/workhistories', { emp_id: emp_id });
+			if (res.status !== 201) {
+				throw new Error('employee attend error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	leaveAttend: async (emp_id: string) => {
+		try {
+			const res = await axios.patch('/api/workhistories', { emp_id: emp_id });
+			if (res.status !== 200) {
+				throw new Error('employee attend error');
+			}
 		} catch (e) {
 			throw new Error(e);
 		}
