@@ -18,6 +18,7 @@ import {
 	seatReserveProps,
 	dateProps,
 	wageProps,
+	userInfoProps,
 } from './interface';
 
 const movieApi = {
@@ -107,6 +108,17 @@ const authApi = {
 			if (res.status !== 200) {
 				alert('비회원 정보를 입력도중 오류가 발생했습니다.');
 				throw new Error('nonLogin error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	getInfo: async (data: string): Promise<userInfoProps[]> => {
+		try {
+			const res = await axios.get(`/api/auth/${data}`);
+			if (res.status !== 200) {
+				throw new Error('getInfo error');
 			}
 			return res.data;
 		} catch (e) {

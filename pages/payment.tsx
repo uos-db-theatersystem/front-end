@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { Layout } from '../components/index';
-import {} from '../utils/api';
+import { authApi } from '../utils/api';
 import { paymentProps, userInfoProps } from '../utils/interface';
 import { useRouter } from 'next/router';
 import { FormControl, InputLabel, Select, TextField } from '@material-ui/core';
