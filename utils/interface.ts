@@ -30,7 +30,7 @@ export interface postMovieProps {
 	actor_names: string;
 	director_name: string;
 	distributor_name: string;
-	genres: string;
+	genres: string[];
 	is_screening: string;
 	movie_description: string;
 	movie_name: string;

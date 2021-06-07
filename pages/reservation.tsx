@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Layout, SeatList, NonLoginModal } from '../components/index';
+import { Layout, SeatList, NonLoginModal, Payment } from '../components/index';
 import { Button } from '@material-ui/core';
 import { reservationApi } from '../utils/api';
 import { useRecoilState } from 'recoil';

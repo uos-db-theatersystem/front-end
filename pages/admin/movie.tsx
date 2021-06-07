@@ -1,8 +1,23 @@
 import { ChangeEvent, useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, FormControl, InputLabel, Select } from '@material-ui/core';
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import { Layout } from '../../components/index';
 import { movieApi } from '../../utils/api';
 import { postMovieProps } from '../../utils/interface';
+const genres: string[] = [
+	'액션',
+	'범죄',
+	'SF',
+	'코미디',
+	'스릴러',
+	'공포',
+	'전쟁',
+	'스포츠',
+	'판타지',
+	'음악',
+	'뮤지컬',
+	'멜로',
+];
 const movie = () => {
 	const [info, setInfo] = useState<postMovieProps>({
 		movie_name: null,
@@ -11,15 +26,21 @@ const movie = () => {
 		actor_names: null,
 		director_name: null,
 		distributor_name: null,
-		genres: null,
-		moviegrade_num: null,
+		genres: [],
+		moviegrade_num: '1',
 		running_time: null,
-		is_screening: null,
+		is_screening: 'Y',
 	});
 	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
+		if (!name) return;
 		setInfo({ ...info, [name]: value });
 	};
+	const handleGenres = (e, value) => {
+		setInfo({ ...info, genres: value });
+	};
+	console.log(info);
+
 	const handleClick = async () => {
 		for (let key in info) {
 			if (info[key] === null || info[key] === '') {
@@ -27,16 +48,8 @@ const movie = () => {
 				return;
 			}
 		}
-		if (!/^[yn]{1}$/.test(String(info.is_screening))) {
-			alert('상영 여부를 정확히 입력해주세요.');
-			return;
-		}
 		if (!/^[0-9]{1,}$/.test(String(info.running_time))) {
 			alert('상영 시간을 정확히 숫자만 입력해주세요.');
-			return;
-		}
-		if (!/^[0-9]{1,}$/.test(String(info.moviegrade_num))) {
-			alert('등급을 정확히 숫자만 입력해주세요.');
 			return;
 		}
 		try {
@@ -74,20 +87,34 @@ const movie = () => {
 					placeholder="ex : 120"
 					variant="outlined"
 				/>
-				<TextField
-					className="movie-input"
-					name="moviegrade_num"
-					label="등급"
-					placeholder="ex : 12"
-					variant="outlined"
-				/>
-				<TextField
-					className="movie-input"
-					name="is_screening"
-					label="상영 여부"
-					placeholder="y or n"
-					variant="outlined"
-				/>
+				<FormControl variant="outlined" className="movie-input">
+					<InputLabel htmlFor="age-native-simple">Age</InputLabel>
+					<Select
+						native
+						value={info.moviegrade_num}
+						inputProps={{
+							name: 'moviegrade_num',
+						}}
+					>
+						<option value="1">전체 관람가</option>
+						<option value="2">12세이상 관람가</option>
+						<option value="3">15세이상 관람가</option>
+						<option value="4">청소년 관람불가</option>
+					</Select>
+				</FormControl>
+				<FormControl variant="outlined" className="movie-input">
+					<InputLabel htmlFor="age-native-simple">상영 여부</InputLabel>
+					<Select
+						native
+						value={info.is_screening}
+						inputProps={{
+							name: 'is_screening',
+						}}
+					>
+						<option value="y">Y</option>
+						<option value="n">N</option>
+					</Select>
+				</FormControl>
 				<TextField
 					className="movie-input"
 					name="actor_names"
@@ -102,6 +129,16 @@ const movie = () => {
 					placeholder="url"
 					variant="outlined"
 				/>
+				<ToggleButtonGroup value={info.genres} onChange={handleGenres}>
+					{genres.map((genre) => (
+						<ToggleButton
+							style={{ color: 'darkblue', fontWeight: 'bold' }}
+							value={genre}
+						>
+							{genre}
+						</ToggleButton>
+					))}
+				</ToggleButtonGroup>
 				<TextField
 					className="movie-input"
 					name="genres"

@@ -56,10 +56,7 @@ const movieApi = {
 	},
 	postMovie: async (data: postMovieProps) => {
 		try {
-			const res = await axios.post('/api/movies', {
-				...data,
-				genres: data.genres.replace(' ', '').split(','),
-			});
+			const res = await axios.post('/api/movies', data);
 			if (res.status !== 201) {
 				throw new Error('postMovie에러');
 			}
