@@ -21,12 +21,6 @@ const reservation = () => {
 			customer_num: Number(userNum),
 			seat_num: selects,
 		});
-		router.push({
-			pathname: '/payment',
-			query: {
-				reservation_num,
-			},
-		});
 	};
 
 	return (

@@ -68,6 +68,7 @@ export interface schedulesProps {
 	screening_date: number;
 	screening_time: number;
 	screeningschedule_num: number;
+	ticket_price: number;
 }
 export interface productProps {
 	product_description: string;
