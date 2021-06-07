@@ -20,6 +20,7 @@ import {
 	wageProps,
 	userInfoProps,
 	paymentProps,
+	discountProps,
 } from './interface';
 
 const movieApi = {
@@ -115,7 +116,7 @@ const authApi = {
 			throw new Error(e);
 		}
 	},
-	getInfo: async (data: string): Promise<userInfoProps[]> => {
+	getInfo: async (data: string): Promise<userInfoProps> => {
 		try {
 			const res = await axios.get(`/api/auth/${data}`);
 			if (res.status !== 200) {
@@ -290,4 +291,26 @@ const profitApi = {
 		}
 	},
 };
-export { movieApi, authApi, schedulesApi, productsApi, employeesApi, reservationApi, profitApi };
+const discountApi = {
+	getDiscounts: async (): Promise<discountProps[]> => {
+		try {
+			const res = await axios.get('/api/discount');
+			if (res.status !== 200) {
+				throw new Error('getDiscounts error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+};
+export {
+	movieApi,
+	authApi,
+	schedulesApi,
+	productsApi,
+	employeesApi,
+	reservationApi,
+	profitApi,
+	discountApi,
+};

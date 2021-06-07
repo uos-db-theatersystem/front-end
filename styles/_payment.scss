@@ -1,6 +1,10 @@
 #payment-container {
+	width: 60%;
+	margin-top: 20px;
+	margin: 0 auto;
+}
+#payment-form {
 	width: 100%;
-	padding: 0 30%;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;

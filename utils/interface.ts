@@ -148,3 +148,11 @@ export interface wageProps {
 	emp_name: string;
 	wage: number;
 }
+export interface discountProps {
+	discount_name: string;
+	discount_num: number;
+	discount_percentage: number;
+	discount_price: number;
+	discount_type: string;
+	is_promotion: 'y' | 'n';
+}
