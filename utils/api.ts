@@ -19,6 +19,7 @@ import {
 	dateProps,
 	wageProps,
 	userInfoProps,
+	paymentProps,
 } from './interface';
 
 const movieApi = {
@@ -248,6 +249,16 @@ const reservationApi = {
 				throw new Error('reservation error');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postPayment: async (data: paymentProps) => {
+		try {
+			const res = await axios.post('/api/payment', data);
+			if (res.status !== 200) {
+				throw new Error('payment error');
+			}
 		} catch (e) {
 			throw new Error(e);
 		}
