@@ -96,6 +96,7 @@ const schedules = () => {
 				schedule_num: dataset.schedule_num,
 				auditorium_num: dataset.auditorium_num,
 				name: dataset.name,
+				price: dataset.price,
 			},
 		});
 	};
@@ -149,6 +150,7 @@ const schedules = () => {
 															schedule.auditorium_num
 														}
 														data-name={schedule.movie_name}
+														data-price={schedule.ticket_price}
 													>
 														<div className="schedules-left">
 															{String(schedule.screening_time).slice(

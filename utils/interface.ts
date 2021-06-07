@@ -50,6 +50,16 @@ export interface userProps {
 	Token: string;
 	user_num: number;
 }
+export interface userInfoProps {
+	name: string;
+	phone: string;
+	point: number;
+	reservation_list: reservationProps[];
+}
+interface reservationProps {
+	reservation_date: string;
+	reservation_num: number;
+}
 export interface signUpProps {
 	customer_name: string;
 	customer_phonenum: string;
