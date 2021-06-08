@@ -156,3 +156,17 @@ export interface discountProps {
 	discount_type: string;
 	is_promotion: 'y' | 'n';
 }
+export interface reservationInfo {
+	auditorium_num: number;
+	is_payment_canceled: 'y' | 'n';
+	is_ticketing: 'y' | 'n';
+	movie_name: string;
+	movie_poster_url: string;
+	payment_price: number;
+	reservation_num: number;
+	running_time: number;
+	screening_date: number;
+	screening_time: number;
+	seat_cnt: number;
+	seat_num: { col: number; row: number }[];
+}

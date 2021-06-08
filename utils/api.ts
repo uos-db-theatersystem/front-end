@@ -21,6 +21,7 @@ import {
 	userInfoProps,
 	paymentProps,
 	discountProps,
+	reservationInfo,
 } from './interface';
 
 const movieApi = {
@@ -260,6 +261,17 @@ const reservationApi = {
 			if (res.status !== 200) {
 				throw new Error('payment error');
 			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	getReservationInfo: async (data: string): Promise<reservationInfo> => {
+		try {
+			const res = await axios.get(`/api/reservation/${data}`);
+			if (res.status !== 200) {
+				throw new Error('get reservationInfo error');
+			}
+			return res.data;
 		} catch (e) {
 			throw new Error(e);
 		}

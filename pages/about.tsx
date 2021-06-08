@@ -42,7 +42,9 @@ const About = () => {
 									<ul className="history-list">
 										{info.reservation_list.map((item) => (
 											<li>
-												<Link href={`/ticketInfo?${item.reservation_num}`}>
+												<Link
+													href={`/ticketInfo?id=${item.reservation_num}`}
+												>
 													{item.reservation_date.slice(0, 26)}
 												</Link>
 											</li>
