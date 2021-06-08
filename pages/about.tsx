@@ -1,40 +1,59 @@
 import Layout from '../components/Layout';
+import { useRouter } from 'next/router';
+import { Paper, CircularProgress } from '@material-ui/core';
+import { useEffect, useState } from 'react';
+import { authApi } from '../utils/api';
+import { userInfoProps } from '../utils/interface';
 import Link from 'next/link';
-import { Paper } from '@material-ui/core';
-// import { useRecoilState } from 'recoil';
-// import { nameState } from '../utils/states';
-import React from 'react';
 
 const About = () => {
-	// const [name, setNameState] = useRecoilState(nameState);
-
-	// const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setNameState(e.target.value);
-	// };
-
+	const router = useRouter();
+	const [info, setInfo] = useState<userInfoProps>(null);
+	useEffect(() => {
+		if (router.isReady) {
+			if (localStorage.getItem('Token')) {
+				(async () => {
+					setInfo(await authApi.getInfo(localStorage.getItem('userNum')));
+				})();
+			} else {
+				alert('비회원에게 제공하지 않는 기능입니다.');
+				router.push('/');
+			}
+		}
+	}, [router.isReady]);
 	return (
 		<Layout>
 			<div className="about-container">
 				<Paper elevation={5}>
-					<p className="about-title">김현규님의 정보입니다.</p>
-					<div className="about-info">
-						<div className="about-money">
-							<p>총 결제금액</p>
-							<p>20000 원</p>
-						</div>
-						<div className="about-point">
-							<p>보유 포인트</p>
-							<p>10000 pt</p>
-						</div>
-						<div className="about-history">
-							<p className="history-title">구매 내역</p>
-							<ul className="history-list">
-								<li>고질라 vs 콩 2020.20.20</li>
-								<li>기생충 2020.20.02</li>
-								<li>현구 2020.02.02</li>
-							</ul>
-						</div>
-					</div>
+					{info ? (
+						<>
+							<p className="about-title">{info.name}님의 정보입니다.</p>
+							<div className="about-info">
+								<div className="about-money">
+									<p>전화번호</p>
+									<p>{info.phone}</p>
+								</div>
+								<div className="about-point">
+									<p>보유 포인트</p>
+									<p>{info.point} pt</p>
+								</div>
+								<div className="about-history">
+									<p className="history-title">구매 내역</p>
+									<ul className="history-list">
+										{info.reservation_list.map((item) => (
+											<li>
+												<Link href={`/ticketInfo?${item.reservation_num}`}>
+													{item.reservation_date.slice(0, 26)}
+												</Link>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						</>
+					) : (
+						<CircularProgress />
+					)}
 				</Paper>
 			</div>
 		</Layout>

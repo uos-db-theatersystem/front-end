@@ -67,13 +67,13 @@ const payment = () => {
 				: Math.floor(payment.standard_price * (info.discount_percentage / 100));
 		setPayment({
 			...payment,
-			dcnt_num: 1,
+			dcnt_num: Number(e.target.value),
 			dcnt_after_price: payment.standard_price - dcntPrice,
 			payment_price: payment.standard_price - dcntPrice - payment.used_point,
 		});
 	};
 	const handlePoint = (e) => {
-		const point = e.target.value;
+		const point = +e.target.value;
 		if (!point || point <= 0 || point > userInfo.point || point > payment.dcnt_after_price) {
 			setPayment({
 				...payment,
@@ -90,6 +90,17 @@ const payment = () => {
 				payment_price: payment.dcnt_after_price - point,
 			});
 			e.target.value = point;
+		}
+	};
+	const handleClick = async () => {
+		console.log(payment);
+
+		try {
+			await reservationApi.postPayment(payment);
+			alert('성공적으로 예매가 완료되었습니다.');
+			router.push('/about');
+		} catch (e) {
+			alert('예매 도중 오류가 발생했습니다.');
 		}
 	};
 
@@ -183,6 +194,7 @@ const payment = () => {
 					variant="contained"
 					color="primary"
 					style={{ fontWeight: 'bold', width: '100%' }}
+					onClick={handleClick}
 				>
 					결제하기
 				</Button>
