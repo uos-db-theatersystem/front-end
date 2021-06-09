@@ -22,7 +22,7 @@ const payment = () => {
 		dcnt_after_price: 0,
 		is_point_used: 'n',
 		is_payment_canceled: 'n',
-		dcnt_num: 0,
+		dcnt_num: 4,
 		sender_name: '',
 		sender_accountnum: '',
 		used_point: 0,
@@ -56,7 +56,7 @@ const payment = () => {
 	};
 	const handleDiscount = (e) => {
 		if (Number(e.target.value) === -1) {
-			setPayment({ ...payment, dcnt_num: 0, dcnt_after_price: payment.standard_price });
+			setPayment({ ...payment, dcnt_num: 4, dcnt_after_price: payment.standard_price });
 			return;
 		}
 		const info = discounts.find((info) => info.discount_num === Number(e.target.value));

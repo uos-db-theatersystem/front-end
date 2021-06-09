@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Layout } from '../../components/index';
-import { TextField, Button, Checkbox, FormControlLabel } from '@material-ui/core';
+import { employeesApi } from '../../utils/api';
+import {
+	TextField,
+	Button,
+	Checkbox,
+	FormControlLabel,
+	FormControl,
+	InputLabel,
+	Select,
+} from '@material-ui/core';
 import { employeeProps } from '../../utils/interface';
 
 const employee = () => {
@@ -18,13 +27,27 @@ const employee = () => {
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.name === 'is_admin') {
 			setInfo({ ...info, is_admin: e.target.checked ? 'Y' : 'N' });
+		} else if (e.target.name === 'emp_grade') {
+			const { name, value } = e.target;
+			setInfo({ ...info, [name]: value });
 		} else {
 			const { name, value } = e.target;
 			setInfo({ ...info, [name]: value });
 		}
 	};
-	const handleClick = async () => {};
-	console.log(info);
+	const handleClick = async () => {
+		if (info.emp_grade === '정직원') {
+			setInfo({ ...info, contract_hourly_wage: null });
+		} else {
+			setInfo({ ...info, contract_salary: null });
+		}
+		try {
+			await employeesApi.postEmployee(info);
+			alert('회원 등록이 완료됐습니다.');
+		} catch (e) {
+			alert('정보가 이미 존재하거나 잘 못 입력된 정보입니다.');
+		}
+	};
 	return (
 		<Layout>
 			<h1 id="movie-header">직원 등록</h1>
@@ -41,10 +64,23 @@ const employee = () => {
 					label="전화번호"
 					variant="outlined"
 				/>
+				<FormControl variant="outlined" className="movie-input">
+					<InputLabel htmlFor="age-native-simple">직원 분류</InputLabel>
+					<Select
+						native
+						value={info.emp_grade}
+						inputProps={{
+							name: 'emp_grade',
+						}}
+					>
+						<option value="정직원">정직원</option>
+						<option value="파트 타임 직원">파트 타임 직원</option>
+					</Select>
+				</FormControl>
 				<TextField
 					className="movie-input"
-					name="department_name"
-					label="소속부서"
+					name={info.emp_grade === '정직원' ? 'contract_salary' : 'contract_hourly_wage'}
+					label="월급/시급"
 					variant="outlined"
 				/>
 				<TextField

@@ -22,6 +22,7 @@ import {
 	paymentProps,
 	discountProps,
 	reservationInfo,
+	postDiscountProps,
 } from './interface';
 
 const movieApi = {
@@ -154,6 +155,16 @@ const productsApi = {
 			throw new Error(e);
 		}
 	},
+	postProduct: async (data: productProps) => {
+		try {
+			const res = await axios.post('/api/products', data);
+			if (res.status !== 201) {
+				throw new Error('postProduct error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 	deleteProduct: async (data: number) => {
 		try {
 			const res = await axios.delete(`/api/products/${data}`);
@@ -173,6 +184,16 @@ const employeesApi = {
 				throw new Error('employees error');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postEmployee: async (data: employeeProps) => {
+		try {
+			const res = await axios.post('/api/employees', data);
+			if (res.status !== 200) {
+				throw new Error('employeesPost error');
+			}
 		} catch (e) {
 			throw new Error(e);
 		}
@@ -311,6 +332,26 @@ const discountApi = {
 				throw new Error('getDiscounts error');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	patchDiscounts: async (data: number) => {
+		try {
+			const res = await axios.patch(`/api/discount/${data}`);
+			if (res.status !== 200) {
+				throw new Error('patchDiscount error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postDiscount: async (data: postDiscountProps) => {
+		try {
+			const res = await axios.post('/api/discount', data);
+			if (res.status !== 200) {
+				throw new Error('postDiscount error');
+			}
 		} catch (e) {
 			throw new Error(e);
 		}

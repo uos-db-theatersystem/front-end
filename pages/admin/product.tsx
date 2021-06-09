@@ -1,64 +1,74 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Layout } from '../../components/index';
 import { productProps } from '../../utils/interface';
 import { productsApi } from '../../utils/api';
-import { List, ListItem, Divider, IconButton } from '@material-ui/core';
-import { Edit, Close } from '@material-ui/icons';
+import { TextField, Button, FormControl, InputLabel, Select } from '@material-ui/core';
 const product = () => {
-	const [products, setProducts] = useState<productProps[]>([]);
-	useEffect(() => {
-		(async () => {
-			try {
-				setProducts(await productsApi.getProducts());
-			} catch (e) {
-				throw new Error(e);
-			}
-		})();
-	}, []);
-	const handleClick = async (e: any) => {
-		const { name, dataset } = e.target.closest('button');
-
-		if (name === 'delete') {
-			try {
-				await productsApi.deleteProduct(dataset.id);
-				setProducts(
-					products.filter((product) => product.product_num !== Number(dataset.id))
-				);
-			} catch (e) {
-				throw new Error(e);
-			}
+	const [info, setInfo] = useState<productProps>({
+		product_type: '스낵',
+		product_name: null,
+		product_description: null,
+		product_image_url: null,
+		product_price: null,
+	});
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setInfo({ ...info, [name]: value });
+	};
+	const handleClick = async () => {
+		try {
+			await productsApi.postProduct(info);
+			alert('상품 등록이 완료됐습니다.');
+		} catch (e) {
+			alert('잘 못 입력된 정보입니다.');
 		}
 	};
 	return (
 		<Layout>
-			<h1 style={{ textAlign: 'center' }}>상품 목록</h1>
-			<List
-				className="search-list"
-				style={{ padding: '0 0' }}
-				component="nav"
-				onClick={handleClick}
-			>
-				{products.map((product) => (
-					<div key={product.product_num}>
-						<ListItem>
-							<div>
-								<p style={{ margin: '0 0' }}>{product.product_name}</p>
-								<b style={{ fontSize: '20px' }}>{product.product_description} </b>
-								<b style={{ fontSize: '20px' }}>{product.product_price}원</b>
-							</div>
-							<div style={{ marginLeft: 'auto' }}>
-								<IconButton name="edit" data-id={product.product_num}>
-									<Edit />
-								</IconButton>
-								<IconButton name="delete" data-id={product.product_num}>
-									<Close />
-								</IconButton>
-							</div>
-						</ListItem>
-						<Divider />
-					</div>
-				))}
-			</List>
+			<h1 id="movie-header">상품 등록</h1>
+			<div id="movie-container" onChange={handleInput}>
+				<TextField
+					className="movie-input"
+					name="product_name"
+					label="상품 이름"
+					variant="outlined"
+				/>
+				<TextField
+					className="movie-input"
+					name="product_description"
+					label="상품 설명"
+					variant="outlined"
+				/>
+				<FormControl variant="outlined" className="movie-input">
+					<InputLabel htmlFor="age-native-simple">상품 분류</InputLabel>
+					<Select
+						native
+						value={info.product_type}
+						inputProps={{
+							name: 'product_type',
+						}}
+					>
+						<option value="스낵">스낵</option>
+						<option value="음료">음료</option>
+						<option value="콤보">콤보</option>
+					</Select>
+				</FormControl>
+				<TextField
+					className="movie-input"
+					name="product_price"
+					label="상품 가격"
+					variant="outlined"
+				/>
+				<TextField
+					className="movie-input"
+					name="product_image_url"
+					label="상품 이미지 주소"
+					variant="outlined"
+				/>
+				<Button variant="contained" color="primary" onClick={handleClick}>
+					추가하기
+				</Button>
+			</div>
 		</Layout>
 	);
 };

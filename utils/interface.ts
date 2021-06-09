@@ -84,7 +84,7 @@ export interface productProps {
 	product_description: string;
 	product_image_url: string;
 	product_name: string;
-	product_num: number;
+	product_num?: number;
 	product_price: number;
 	product_type: string;
 }
@@ -155,6 +155,12 @@ export interface discountProps {
 	discount_price: number;
 	discount_type: string;
 	is_promotion: 'y' | 'n';
+}
+export interface postDiscountProps {
+	type: '0000' | '0001';
+	name: string;
+	percentage: number;
+	price: number;
 }
 export interface reservationInfo {
 	auditorium_num: number;

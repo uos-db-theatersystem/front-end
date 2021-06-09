@@ -19,8 +19,17 @@ const admin = () => {
 				<Link href="/admin/profit">
 					<button className="admin-menu">매출조회</button>
 				</Link>
-				<Link href="/admin/product">
+				<Link href="/admin/products">
 					<button className="admin-menu">상품관리</button>
+				</Link>
+				<Link href="/admin/product">
+					<button className="admin-menu">상품등록</button>
+				</Link>
+				<Link href="/admin/discounts">
+					<button className="admin-menu">할인관리</button>
+				</Link>
+				<Link href="/admin/discount">
+					<button className="admin-menu">할인등록</button>
 				</Link>
 			</div>
 		</Layout>
