@@ -22,7 +22,7 @@ const payment = () => {
 		dcnt_after_price: 0,
 		is_point_used: 'n',
 		is_payment_canceled: 'n',
-		dcnt_num: 4,
+		dcnt_num: 10,
 		sender_name: '',
 		sender_accountnum: '',
 		used_point: 0,
@@ -117,7 +117,7 @@ const payment = () => {
 							<h3>할인 목록</h3>
 							<FormControl variant="outlined">
 								<Select native onChange={handleDiscount}>
-									<option value={-1}>-</option>
+									<option value={10}>-</option>
 									{discounts.map((info) => (
 										<option key={info.discount_num} value={info.discount_num}>
 											{info.discount_name} :{' '}
