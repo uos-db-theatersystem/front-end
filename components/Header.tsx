@@ -27,8 +27,8 @@ const Header = () => {
 			<Link href="/schedules">
 				<Button>예매하기</Button>
 			</Link>
-			<Link href="/about">
-				<Button>예매 확인</Button>
+			<Link href="/noninfo">
+				<Button>비회원 확인</Button>
 			</Link>
 			<Link href="/about">
 				<Button>마이 페이지</Button>
