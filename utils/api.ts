@@ -24,6 +24,7 @@ import {
 	reservationInfo,
 	postDiscountProps,
 	nonInfoProps,
+	newScheduleProps,
 } from './interface';
 
 const movieApi = {
@@ -150,6 +151,16 @@ const schedulesApi = {
 				throw new Error('schedules error');
 			}
 			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	postSchedule: async (data: newScheduleProps) => {
+		try {
+			const res = await axios.post('/api/schedules', data);
+			if (res.status !== 201) {
+				throw new Error('postSchedule error');
+			}
 		} catch (e) {
 			throw new Error(e);
 		}

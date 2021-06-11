@@ -85,6 +85,13 @@ export interface schedulesProps {
 	screeningschedule_num: number;
 	ticket_price: number;
 }
+export interface newScheduleProps {
+	movie_num?: number;
+	screening_date: number;
+	auditorium_num: number;
+	screening_time: number;
+	ticket_price: number;
+}
 export interface productProps {
 	product_description: string;
 	product_image_url: string;

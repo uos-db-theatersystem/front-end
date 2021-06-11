@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
-import { Layout } from '../../components/index';
+import React, { useState, useEffect } from 'react';
+import { Layout, NewScheduleModal } from '../../components/index';
 import { movieState } from '../../utils/states';
-import { movieApi } from '../../utils/api';
+import { movieApi, schedulesApi } from '../../utils/api';
 import { useRecoilState } from 'recoil';
 import { ListItem, List, Divider, IconButton } from '@material-ui/core';
 import { Close, Edit } from '@material-ui/icons';
+import { newScheduleProps } from '../../utils/interface';
 const movies = () => {
 	const [movies, setMovies] = useRecoilState(movieState);
-
+	const [open, setOpen] = useState<boolean>(false);
+	const [movieIdx, setMovieIdx] = useState<number>(0);
 	useEffect(() => {
 		(async () => {
 			try {
@@ -28,8 +30,21 @@ const movies = () => {
 				throw new Error(e);
 			}
 		}
+		if (name === 'edit') {
+			setMovieIdx(Number(dataset.id));
+			setOpen(true);
+		}
 	};
-
+	const addSchedule = async (data: newScheduleProps) => {
+		data.movie_num = movieIdx;
+		try {
+			await schedulesApi.postSchedule(data);
+			alert('상영일정이 성공적으로 추가됐습니다.');
+			setOpen(false);
+		} catch (e) {
+			alert('상영 일정 추가중 오류가 발생했습니다.');
+		}
+	};
 	return (
 		<Layout>
 			<h1 id="movie-header">영화 목록</h1>
@@ -56,6 +71,7 @@ const movies = () => {
 					</div>
 				))}
 			</List>
+			<NewScheduleModal open={open} setOpen={setOpen} addSchedule={addSchedule} />
 		</Layout>
 	);
 };
