@@ -23,6 +23,7 @@ import {
 	discountProps,
 	reservationInfo,
 	postDiscountProps,
+	nonInfoProps,
 } from './interface';
 
 const movieApi = {
@@ -123,6 +124,17 @@ const authApi = {
 			const res = await axios.get(`/api/auth/${data}`);
 			if (res.status !== 200) {
 				throw new Error('getInfo error');
+			}
+			return res.data;
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	getNonInfo: async (data: string): Promise<nonInfoProps> => {
+		try {
+			const res = await axios.get(`/api/auth/non/${data}`);
+			if (res.status !== 200) {
+				throw new Error('getNonInfo error');
 			}
 			return res.data;
 		} catch (e) {

@@ -20,6 +20,19 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 }
+#non-input {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.non-about-info {
+	width: 100%;
+	height: 300px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
 .about-money,
 .about-point {
 	display: flex;

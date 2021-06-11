@@ -56,6 +56,11 @@ export interface userInfoProps {
 	point: number;
 	reservation_list: reservationProps[];
 }
+export interface nonInfoProps {
+	name: string;
+	phone: string;
+	reservation_list: reservationProps[];
+}
 interface reservationProps {
 	reservation_date: string;
 	reservation_num: number;
