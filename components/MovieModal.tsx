@@ -1,9 +1,9 @@
-import { ChangeEvent, useState } from 'react';
-import { TextField, Button, FormControl, InputLabel, Select } from '@material-ui/core';
+import { useState, ChangeEvent } from 'react';
+import { Modal, TextField, IconButton, FormControl, InputLabel, Select } from '@material-ui/core';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
-import { Layout } from '../../components/index';
-import { movieApi } from '../../utils/api';
-import { postMovieProps } from '../../utils/interface';
+import { Close, Edit } from '@material-ui/icons';
+import { postMovieProps } from '../utils/interface';
+import { useStyles } from '../utils/functions';
 const genres: string[] = [
 	'액션',
 	'범죄',
@@ -18,7 +18,8 @@ const genres: string[] = [
 	'뮤지컬',
 	'멜로',
 ];
-const movie = () => {
+const MovieModal = ({ open, setOpen, patchMovie }) => {
+	const classes = useStyles();
 	const [info, setInfo] = useState<postMovieProps>({
 		movie_name: null,
 		movie_description: null,
@@ -31,7 +32,7 @@ const movie = () => {
 		running_time: null,
 		is_screening: 'y',
 	});
-	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		if (!name) return;
 		setInfo({ ...info, [name]: value });
@@ -39,29 +40,11 @@ const movie = () => {
 	const handleGenres = (e, value) => {
 		setInfo({ ...info, genres: value });
 	};
-	console.log(info);
 
-	const handleClick = async () => {
-		for (let key in info) {
-			if (info[key] === null || info[key] === '') {
-				alert('정보를 모두 입력해주세요.');
-				return;
-			}
-		}
-		if (!/^[0-9]{1,}$/.test(String(info.running_time))) {
-			alert('상영 시간을 정확히 숫자만 입력해주세요.');
-			return;
-		}
-		try {
-			await movieApi.postMovie({ ...info, running_time: Number(info.running_time) });
-		} catch (e) {
-			throw new Error(e);
-		}
-	};
 	return (
-		<Layout>
-			<h1 id="movie-header">영화 추가</h1>
-			<div id="movie-container" onChange={handleInput}>
+		<Modal open={open} onClose={() => setOpen(false)}>
+			<div className={classes.paper} id="modal-container" onChange={handleChange}>
+				<h1>영화 정보 수정</h1>
 				<TextField
 					className="movie-input"
 					name="movie_name"
@@ -153,12 +136,17 @@ const movie = () => {
 					label="줄거리"
 					variant="outlined"
 				/>
-				<Button variant="contained" color="primary" onClick={handleClick}>
-					추가하기
-				</Button>
+				<div>
+					<IconButton name="edit" onClick={() => patchMovie(info)}>
+						<Edit />
+					</IconButton>
+					<IconButton name="delete" onClick={() => setOpen(false)}>
+						<Close />
+					</IconButton>
+				</div>
 			</div>
-		</Layout>
+		</Modal>
 	);
 };
 
-export default movie;
+export default MovieModal;

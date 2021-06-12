@@ -72,6 +72,16 @@ const movieApi = {
 			throw new Error(e);
 		}
 	},
+	patchMovie: async (data: postMovieProps, id: number) => {
+		try {
+			const res = await axios.patch(`/api/movie/${id}`, data);
+			if (res.status !== 200) {
+				throw new Error('patchMovie error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 	deleteMovie: async (id: number) => {
 		try {
 			const res = await axios.delete(`/api/movies/${id}`);
@@ -170,6 +180,16 @@ const schedulesApi = {
 			const res = await axios.delete(`/api/schedules/${id}`);
 			if (res.status !== 200) {
 				throw new Error('deleteSchedules error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	patchSchedule: async (data: newScheduleProps, id: number) => {
+		try {
+			const res = await axios.patch(`/api/schedules/${id}`, data);
+			if (res.status !== 200) {
+				throw new Error('patchSchedule error');
 			}
 		} catch (e) {
 			throw new Error(e);

@@ -9,3 +9,5 @@ export { default as NonLoginModal } from './NonLoginModal';
 export { default as NewScheduleModal } from './NewScheduleModal';
 export { default as EmployeeModal } from './EmployeeModal';
 export { default as ProductModal } from './ProductModal';
+export { default as MovieModal } from './MovieModal';
+export { default as ScheduleModal } from './ScheduleModal';

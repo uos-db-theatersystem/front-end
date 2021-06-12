@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Layout } from '../../components/index';
-import { schedulesProps } from '../../utils/interface';
+import { Layout, ScheduleModal } from '../../components/index';
+import { newScheduleProps, schedulesProps } from '../../utils/interface';
 import { schedulesApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
 import { Edit, Close } from '@material-ui/icons';
 
 const schedules = () => {
 	const [schedules, setSchedules] = useState<schedulesProps[]>([]);
+	const [scheduleIdx, setScheduleIdx] = useState<number>();
+	const [movieIdx, setMovieIdx] = useState<number>();
+	const [open, setOpen] = useState<boolean>(false);
 	useEffect(() => {
 		(async () => {
 			try {
@@ -30,6 +33,20 @@ const schedules = () => {
 			} catch (e) {
 				throw new Error(e);
 			}
+		} else if (name === 'edit') {
+			setScheduleIdx(Number(dataset.id));
+			setMovieIdx(Number(dataset.movieNum));
+			setOpen(true);
+		}
+	};
+	const patchSchedule = async (data: newScheduleProps) => {
+		data.movie_num = movieIdx;
+		try {
+			await schedulesApi.patchSchedule(data, scheduleIdx);
+			alert('일정이 성공적으로 수정됐습니다.');
+			setOpen(false);
+		} catch (e) {
+			alert('일정 수정중 오류가 발생했습니다.');
 		}
 	};
 
@@ -53,7 +70,11 @@ const schedules = () => {
 								</b>
 							</div>
 							<div style={{ marginLeft: 'auto' }}>
-								<IconButton name="edit" data-id={schedule.screeningschedule_num}>
+								<IconButton
+									name="edit"
+									data-id={schedule.screeningschedule_num}
+									data-movie-num={schedule.movie_num}
+								>
 									<Edit />
 								</IconButton>
 								<IconButton name="delete" data-id={schedule.screeningschedule_num}>
@@ -65,6 +86,7 @@ const schedules = () => {
 					</div>
 				))}
 			</List>
+			<ScheduleModal open={open} setOpen={setOpen} patchSchedule={patchSchedule} />
 		</Layout>
 	);
 };
