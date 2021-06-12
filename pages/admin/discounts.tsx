@@ -3,7 +3,7 @@ import { Layout } from '../../components/index';
 import { discountProps } from '../../utils/interface';
 import { discountApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
-import { Edit, Close } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 const discounts = () => {
 	const [discounts, setDiscounts] = useState<discountProps[]>([]);
 	useEffect(() => {
