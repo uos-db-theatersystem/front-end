@@ -16,7 +16,22 @@ const schedules = () => {
 			}
 		})();
 	}, []);
-	const handleClick = async (e: any) => {};
+	const handleClick = async (e: any) => {
+		const { name, dataset } = e.target.closest('button');
+
+		if (name === 'delete') {
+			try {
+				await schedulesApi.deleteSchedule(dataset.id);
+				setSchedules(
+					schedules.filter(
+						(schedule) => schedule.screeningschedule_num !== Number(dataset.id)
+					)
+				);
+			} catch (e) {
+				throw new Error(e);
+			}
+		}
+	};
 
 	return (
 		<Layout>
@@ -31,10 +46,10 @@ const schedules = () => {
 					<div key={schedule.screeningschedule_num}>
 						<ListItem>
 							<div>
-								<p style={{ margin: '0 0' }}>{schedule.movie_name}</p>
-								<b style={{ fontSize: '20px' }}>{schedule.auditorium_num}관 </b>
+								<b style={{ margin: '0 0' }}>{schedule.movie_name}</b>
+								<p style={{ fontSize: '20px' }}>{schedule.auditorium_num}관 </p>
 								<b style={{ fontSize: '20px' }}>
-									일자:{schedule.screening_date}|시간:{schedule.screening_time}
+									일자:{schedule.screening_date} | 시간:{schedule.screening_time}
 								</b>
 							</div>
 							<div style={{ marginLeft: 'auto' }}>
