@@ -3,7 +3,7 @@ import { Layout, EmployeeModal } from '../../components/index';
 import { employeeProps } from '../../utils/interface';
 import { employeesApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
-import { Edit, Close, SettingsInputComponent } from '@material-ui/icons';
+import { Edit, Close } from '@material-ui/icons';
 const employees = () => {
 	const [employees, setEmployees] = useState<employeeProps[]>([]);
 	const [empId, setEmpId] = useState<string>();

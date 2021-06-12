@@ -144,7 +144,7 @@ const authApi = {
 	},
 };
 const schedulesApi = {
-	getSchedules: async (id): Promise<schedulesProps[]> => {
+	getSchedules: async (id?): Promise<schedulesProps[]> => {
 		try {
 			const res = await axios.get(`/api/schedules${id ? `?movie_num=${id}` : ''}`);
 			if (res.status !== 200) {
