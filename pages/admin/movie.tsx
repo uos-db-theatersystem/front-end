@@ -141,13 +141,6 @@ const movie = () => {
 				</ToggleButtonGroup>
 				<TextField
 					className="movie-input"
-					name="genres"
-					label="장르"
-					placeholder="ex : 스릴러,판타지,..."
-					variant="outlined"
-				/>
-				<TextField
-					className="movie-input"
 					name="movie_description"
 					multiline
 					label="줄거리"

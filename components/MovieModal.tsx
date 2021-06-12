@@ -46,34 +46,35 @@ const MovieModal = ({ open, setOpen, patchMovie }) => {
 			<div className={classes.paper} id="modal-container" onChange={handleChange}>
 				<h1>영화 정보 수정</h1>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="movie_name"
 					label="영화 제목"
 					variant="outlined"
 				/>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="director_name"
 					label="감독"
 					variant="outlined"
 				/>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="distributor_name"
 					label="배급사"
 					variant="outlined"
 				/>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					label="상영 시간(분)"
 					name="running_time"
 					placeholder="ex : 120"
 					variant="outlined"
 				/>
-				<FormControl variant="outlined" className="movie-input">
+				<FormControl variant="outlined">
 					<InputLabel htmlFor="age-native-simple">Age</InputLabel>
 					<Select
 						native
+						style={{ width: '300px' }}
 						value={info.moviegrade_num}
 						inputProps={{
 							name: 'moviegrade_num',
@@ -85,10 +86,11 @@ const MovieModal = ({ open, setOpen, patchMovie }) => {
 						<option value="4">청소년 관람불가</option>
 					</Select>
 				</FormControl>
-				<FormControl variant="outlined" className="movie-input">
+				<FormControl variant="outlined">
 					<InputLabel htmlFor="age-native-simple">상영 여부</InputLabel>
 					<Select
 						native
+						style={{ width: '300px' }}
 						value={info.is_screening}
 						inputProps={{
 							name: 'is_screening',
@@ -99,14 +101,14 @@ const MovieModal = ({ open, setOpen, patchMovie }) => {
 					</Select>
 				</FormControl>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="actor_names"
 					label="배우"
 					placeholder="배우명, 배우명, ..."
 					variant="outlined"
 				/>
 				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="movie_poster_url"
 					label="포스터"
 					placeholder="url"
@@ -123,14 +125,7 @@ const MovieModal = ({ open, setOpen, patchMovie }) => {
 					))}
 				</ToggleButtonGroup>
 				<TextField
-					className="movie-input"
-					name="genres"
-					label="장르"
-					placeholder="ex : 스릴러,판타지,..."
-					variant="outlined"
-				/>
-				<TextField
-					className="movie-input"
+					style={{ width: '300px' }}
 					name="movie_description"
 					multiline
 					label="줄거리"

@@ -74,7 +74,7 @@ const movieApi = {
 	},
 	patchMovie: async (data: postMovieProps, id: number) => {
 		try {
-			const res = await axios.patch(`/api/movie/${id}`, data);
+			const res = await axios.patch(`/api/movies/${id}`, data);
 			if (res.status !== 200) {
 				throw new Error('patchMovie error');
 			}
