@@ -1,22 +1,9 @@
 import { useState, ChangeEvent } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, TextField, IconButton } from '@material-ui/core';
 import { Close, Edit } from '@material-ui/icons';
 import { newScheduleProps } from '../utils/interface';
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		paper: {
-			position: 'absolute',
-			width: '600px',
-			backgroundColor: theme.palette.background.paper,
-			boxShadow: theme.shadows[5],
-			padding: theme.spacing(2, 4, 3),
-			top: '50%',
-			left: '50%',
-			transform: 'translate(-50%,-50%)',
-		},
-	})
-);
+import { useStyles } from '../utils/functions';
+
 const NewScheduleModal = ({ open, setOpen, addSchedule }) => {
 	const classes = useStyles();
 	const [info, setInfo] = useState<newScheduleProps>({

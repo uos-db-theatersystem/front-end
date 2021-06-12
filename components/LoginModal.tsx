@@ -1,25 +1,11 @@
 import { useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, TextField, Button } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/states';
 import { loginProps } from '../utils/interface';
 import { authApi } from '../utils/api';
+import { useStyles } from '../utils/functions';
 import Router from 'next/router';
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		paper: {
-			position: 'absolute',
-			width: '600px',
-			backgroundColor: theme.palette.background.paper,
-			boxShadow: theme.shadows[5],
-			padding: theme.spacing(2, 4, 3),
-			top: '50%',
-			left: '50%',
-			transform: 'translate(-50%,-50%)',
-		},
-	})
-);
 
 const LoginModal = () => {
 	const classes = useStyles();

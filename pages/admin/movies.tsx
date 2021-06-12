@@ -29,8 +29,7 @@ const movies = () => {
 			} catch (e) {
 				throw new Error(e);
 			}
-		}
-		if (name === 'edit') {
+		} else if (name === 'edit') {
 			setMovieIdx(Number(dataset.id));
 			setOpen(true);
 		}

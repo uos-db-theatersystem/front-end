@@ -198,6 +198,16 @@ const productsApi = {
 			throw new Error(e);
 		}
 	},
+	putProduct: async (data: productProps) => {
+		try {
+			const res = await axios.put('/api/products', data);
+			if (res.status !== 200) {
+				throw new Error('product put error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 const employeesApi = {
 	getEmployees: async (): Promise<employeeProps[]> => {
@@ -216,6 +226,16 @@ const employeesApi = {
 			const res = await axios.post('/api/employees', data);
 			if (res.status !== 200) {
 				throw new Error('employeesPost error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
+	putEmployee: async (data: employeeProps) => {
+		try {
+			const res = await axios.put(`/api/employees/${data.emp_id}`, data);
+			if (res.status !== 200) {
+				throw new Error('employeePut error');
 			}
 		} catch (e) {
 			throw new Error(e);

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Layout } from '../../components/index';
+import { Layout, ProductModal } from '../../components/index';
 import { productProps } from '../../utils/interface';
 import { productsApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
 import { Edit, Close } from '@material-ui/icons';
 const products = () => {
+	const [open, setOpen] = useState<boolean>(false);
 	const [products, setProducts] = useState<productProps[]>([]);
+	const [productIdx, setProductIdx] = useState<number>(0);
 	useEffect(() => {
 		(async () => {
 			try {
@@ -27,8 +29,22 @@ const products = () => {
 			} catch (e) {
 				throw new Error(e);
 			}
+		} else if (name === 'edit') {
+			setProductIdx(Number(dataset.id));
+			setOpen(true);
 		}
 	};
+	const putProduct = async (data: productProps) => {
+		data.product_num = productIdx;
+		try {
+			await productsApi.putProduct(data);
+			alert('상품이 성공적으로 추가됐습니다.');
+			setOpen(false);
+		} catch (e) {
+			alert('상품 수정중 오류가 발생했습니다.');
+		}
+	};
+
 	return (
 		<Layout>
 			<h1 style={{ textAlign: 'center' }}>상품 목록</h1>
@@ -59,6 +75,7 @@ const products = () => {
 					</div>
 				))}
 			</List>
+			<ProductModal open={open} setOpen={setOpen} putProduct={putProduct} />
 		</Layout>
 	);
 };

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Layout } from '../../components/index';
+import { Layout, EmployeeModal } from '../../components/index';
 import { employeeProps } from '../../utils/interface';
 import { employeesApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
-import { Edit, Close } from '@material-ui/icons';
+import { Edit, Close, SettingsInputComponent } from '@material-ui/icons';
 const employees = () => {
 	const [employees, setEmployees] = useState<employeeProps[]>([]);
+	const [empId, setEmpId] = useState<string>();
+	const [open, setOpen] = useState<boolean>(false);
 	useEffect(() => {
 		(async () => {
 			try {
@@ -25,9 +27,21 @@ const employees = () => {
 			} catch (e) {
 				throw new Error(e);
 			}
+		} else if (name === 'edit') {
+			setEmpId(dataset.id);
+			setOpen(true);
 		}
 	};
-
+	const putEmployee = async (data: employeeProps) => {
+		data.emp_id = empId;
+		try {
+			await employeesApi.putEmployee(data);
+			alert('직원 수정이 완료됐습니다.');
+			setOpen(false);
+		} catch (e) {
+			alert('직원 수정중 오류가 발생했습니다.');
+		}
+	};
 	return (
 		<Layout>
 			<h1 style={{ textAlign: 'center' }}>직원 목록</h1>
@@ -54,6 +68,7 @@ const employees = () => {
 					</div>
 				))}
 			</List>
+			<EmployeeModal open={open} setOpen={setOpen} putEmployee={putEmployee} />
 		</Layout>
 	);
 };

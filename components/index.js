@@ -7,3 +7,5 @@ export { default as LoginModal } from './LoginModal';
 export { default as ProductMenu } from './ProductMenu';
 export { default as NonLoginModal } from './NonLoginModal';
 export { default as NewScheduleModal } from './NewScheduleModal';
+export { default as EmployeeModal } from './EmployeeModal';
+export { default as ProductModal } from './ProductModal';

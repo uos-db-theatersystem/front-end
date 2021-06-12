@@ -109,7 +109,7 @@ export interface employeeProps {
 	emp_name: String;
 	emp_phonenum: String;
 	is_admin: String;
-	emp_pw: String;
+	emp_pw?: String;
 }
 export interface employeeLoginProps {
 	emp_id: string;
