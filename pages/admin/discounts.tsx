@@ -45,9 +45,6 @@ const discounts = () => {
 								<p style={{ margin: '0 0' }}>{discount.discount_name}</p>
 							</div>
 							<div style={{ marginLeft: 'auto' }}>
-								<IconButton name="edit" data-id={discount.discount_num}>
-									<Edit />
-								</IconButton>
 								<IconButton name="delete" data-id={discount.discount_num}>
 									<Close />
 								</IconButton>
