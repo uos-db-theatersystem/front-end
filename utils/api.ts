@@ -165,6 +165,16 @@ const schedulesApi = {
 			throw new Error(e);
 		}
 	},
+	deleteSchedule: async (id: number) => {
+		try {
+			const res = await axios.delete(`/api/schedules/${id}`);
+			if (res.status !== 200) {
+				throw new Error('deleteSchedules error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 const productsApi = {
 	getProducts: async (): Promise<productProps[]> => {

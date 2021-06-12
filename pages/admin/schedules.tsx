@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Layout, EmployeeModal } from '../../components/index';
+import { Layout } from '../../components/index';
 import { schedulesProps } from '../../utils/interface';
 import { schedulesApi } from '../../utils/api';
 import { List, ListItem, Divider, IconButton } from '@material-ui/core';
