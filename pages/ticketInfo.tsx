@@ -26,7 +26,7 @@ const ticketInfo = () => {
 								<ul>
 									{info.seat_num.map((seat) => (
 										<li>
-											{chList[seat.col]}행 {seat.row}열
+											{chList[seat.row]}행 {seat.col}열
 										</li>
 									))}
 								</ul>
