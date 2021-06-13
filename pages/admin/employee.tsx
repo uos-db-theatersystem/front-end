@@ -45,7 +45,6 @@ const employee = () => {
 			postInfo.contract_hourly_wage=Number(postInfo.contract_hourly_wage)
 			postInfo.contract_salary=null
 		}
-		console.log(postInfo);
 		
 		try {
 			await employeesApi.postEmployee(postInfo);
