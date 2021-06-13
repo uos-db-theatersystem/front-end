@@ -7,6 +7,15 @@
 	grid-template-columns: 1fr 3fr;
 	color: white;
 }
+#ticket-header {
+	text-align: center;
+}
+#ticket-cancel {
+	width: 100%;
+	padding-top: 50px;
+	display: flex;
+	justify-content: center;
+}
 #ticket-left,
 #ticket-right {
 	width: 100%;

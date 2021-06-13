@@ -15,7 +15,7 @@ import {
 const payment = () => {
 	const router = useRouter();
 	const [payment, setPayment] = useState<paymentProps>({
-		payment_type: '1234', 
+		payment_type: '1234',
 		reservation_num: null,
 		standard_price: 0,
 		payment_price: 0,
@@ -99,7 +99,7 @@ const payment = () => {
 			await reservationApi.postPayment(payment);
 			alert('성공적으로 예매가 완료되었습니다.');
 			if (!localStorage.getItem('Token')) localStorage.removeItem('userNum');
-			router.push('/about');
+			router.push('/');
 		} catch (e) {
 			alert('예매 도중 오류가 발생했습니다.');
 		}

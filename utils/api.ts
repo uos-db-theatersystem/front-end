@@ -370,6 +370,16 @@ const reservationApi = {
 			throw new Error(e);
 		}
 	},
+	deleteReservation: async (id) => {
+		try {
+			const res = await axios.delete(`/api/reservation/${id}`);
+			if (res.status !== 200) {
+				throw new Error('delete reservation error');
+			}
+		} catch (e) {
+			throw new Error(e);
+		}
+	},
 };
 const profitApi = {
 	getWage: async ({ from_date, to_date }: dateProps): Promise<wageProps[]> => {

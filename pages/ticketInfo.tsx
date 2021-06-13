@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Layout } from '../components/index';
-import { Paper, CircularProgress } from '@material-ui/core';
+import { Paper, CircularProgress, Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { reservationInfo } from '../utils/interface';
 import { reservationApi } from '../utils/api';
@@ -15,8 +15,32 @@ const ticketInfo = () => {
 			})();
 		}
 	}, [router.isReady]);
+	const handleClick = async () => {
+		try {
+			await reservationApi.deleteReservation(info.reservation_num);
+			alert('취소가 완료됐습니다.');
+			setInfo({ ...info, is_payment_canceled: 'y' });
+		} catch (e) {
+			alert('취소 요청중 오류가 발생했습니다.');
+		}
+	};
+
 	return (
 		<Layout>
+			{info && (
+				<>
+					{info.is_payment_canceled === 'y' ? (
+						<h1 id="ticket-header">취소 완료된 예매 내역입니다.</h1>
+					) : (
+						<div id="ticket-cancel">
+							<Button color="secondary" variant="contained" onClick={handleClick}>
+								예매 취소
+							</Button>
+						</div>
+					)}
+				</>
+			)}
+
 			<Paper id="ticket-container" elevation={5}>
 				{info ? (
 					<>
