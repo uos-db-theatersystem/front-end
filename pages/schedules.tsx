@@ -153,14 +153,22 @@ const schedules = () => {
 														data-price={schedule.ticket_price}
 													>
 														<div className="schedules-left">
-															{String(schedule.screening_time).slice(
-																0,
-																2
-															) +
-																':' +
-																String(
-																	schedule.screening_time
-																).slice(2)}
+															{schedule.screening_time < 1000
+																? '0' +
+																  String(
+																		schedule.screening_time
+																  ).slice(0, 1) +
+																  ':' +
+																  String(
+																		schedule.screening_time
+																  ).slice(1)
+																: String(
+																		schedule.screening_time
+																  ).slice(0, 2) +
+																  ':' +
+																  String(
+																		schedule.screening_time
+																  ).slice(2)}
 														</div>
 														<div className="schedules-mid">
 															<h3>{schedule.movie_name}</h3>

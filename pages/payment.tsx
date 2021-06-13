@@ -15,7 +15,7 @@ import {
 const payment = () => {
 	const router = useRouter();
 	const [payment, setPayment] = useState<paymentProps>({
-		payment_type: '1234',
+		payment_type: '1234', 
 		reservation_num: null,
 		standard_price: 0,
 		payment_price: 0,

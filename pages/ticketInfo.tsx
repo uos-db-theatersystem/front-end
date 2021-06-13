@@ -38,10 +38,18 @@ const ticketInfo = () => {
 								<h3>{info.screening_date}</h3>
 								<ul>
 									<li>상영{info.auditorium_num}관</li>
-									<li>
-										{String(info.screening_time).slice(0, 2)}시
-										{String(info.screening_time).slice(2)}분
-									</li>
+									{info.screening_time < 1000 ? (
+										<li>
+											{'0' + String(info.screening_time).slice(0, 1)}시
+											{String(info.screening_time).slice(1)}분
+										</li>
+									) : (
+										<li>
+											{String(info.screening_time).slice(0, 2)}시
+											{String(info.screening_time).slice(2)}분
+										</li>
+									)}
+
 									<li>상영시간 : {info.running_time}분</li>
 								</ul>
 							</div>

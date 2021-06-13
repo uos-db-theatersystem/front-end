@@ -66,7 +66,10 @@ const schedules = () => {
 								<b style={{ margin: '0 0' }}>{schedule.movie_name}</b>
 								<p style={{ fontSize: '20px' }}>{schedule.auditorium_num}관 </p>
 								<b style={{ fontSize: '20px' }}>
-									일자:{schedule.screening_date} | 시간:{schedule.screening_time}
+									일자:{schedule.screening_date} | 시간:
+									{schedule.screening_time < 1000
+										? '0' + String(schedule.screening_time)
+										: schedule.screening_time}
 								</b>
 							</div>
 							<div style={{ marginLeft: 'auto' }}>
