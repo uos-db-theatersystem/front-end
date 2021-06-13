@@ -2,21 +2,10 @@ import { AppBar, Tab, Tabs, List, ListItem, Divider } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { Layout } from '../components/index';
 import { useRouter } from 'next/router';
-import { schedulesApi, reservationApi } from '../utils/api';
+import { schedulesApi } from '../utils/api';
 import { schedulesProps } from '../utils/interface';
+import { getOrderedSchd, getSchedules } from '../utils/functions';
 
-const getSchedules = () => {
-	const days = ['일', '월', '화', '수', '목', '금', '토'];
-	const [day, month, date] = [[], [], []];
-	for (let i = 0; i < 30; i++) {
-		const today = new Date();
-		today.setDate(today.getDate() + i);
-		day.push(days[today.getDay()]);
-		month.push(today.getMonth() + 1);
-		date.push(today.getDate());
-	}
-	return [day, month, date];
-};
 function a11yProps(index: any) {
 	return {
 		id: `scrollable-auto-tab-${index}`,
@@ -43,23 +32,6 @@ function TabPanel(props: TabPanelProps) {
 		</div>
 	);
 }
-const getOrderedSchd = (schedules: schedulesProps[]): schedulesProps[][] => {
-	const orderedSchd: schedulesProps[][] = [];
-	for (let i = 0; i < 30; i++) {
-		orderedSchd.push([]);
-	}
-	schedules.forEach((schedule) => {
-		let str = String(schedule.screening_date);
-		str = str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6);
-		const idx = Math.ceil(
-			(new Date(str).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
-		);
-		if (idx >= 0 && idx < 30) {
-			orderedSchd[idx].push(schedule);
-		}
-	});
-	return orderedSchd;
-};
 
 const schedules = () => {
 	const [day, month, date] = getSchedules();
