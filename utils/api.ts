@@ -254,7 +254,7 @@ const employeesApi = {
 	postEmployee: async (data: employeeProps) => {
 		try {
 			const res = await axios.post('/api/employees', data);
-			if (res.status !== 200) {
+			if (res.status !== 201) {
 				throw new Error('employeesPost error');
 			}
 		} catch (e) {

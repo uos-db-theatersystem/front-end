@@ -39,8 +39,6 @@ const movie = () => {
 	const handleGenres = (e, value) => {
 		setInfo({ ...info, genres: value });
 	};
-	console.log(info);
-
 	const handleClick = async () => {
 		for (let key in info) {
 			if (info[key] === null || info[key] === '') {

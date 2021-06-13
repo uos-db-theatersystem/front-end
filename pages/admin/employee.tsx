@@ -14,7 +14,7 @@ import { employeeProps } from '../../utils/interface';
 
 const employee = () => {
 	const [info, setInfo] = useState<employeeProps>({
-		emp_grade: null,
+		emp_grade: '정직원',
 		emp_id: null,
 		emp_name: null,
 		emp_phonenum: null,
@@ -35,14 +35,20 @@ const employee = () => {
 			setInfo({ ...info, [name]: value });
 		}
 	};
+	
 	const handleClick = async () => {
+		const postInfo=info;
 		if (info.emp_grade === '정직원') {
-			setInfo({ ...info, contract_hourly_wage: null });
+			postInfo.contract_salary=Number(postInfo.contract_salary)
+			postInfo.contract_hourly_wage=null
 		} else {
-			setInfo({ ...info, contract_salary: null });
+			postInfo.contract_hourly_wage=Number(postInfo.contract_hourly_wage)
+			postInfo.contract_salary=null
 		}
+		console.log(postInfo);
+		
 		try {
-			await employeesApi.postEmployee(info);
+			await employeesApi.postEmployee(postInfo);
 			alert('회원 등록이 완료됐습니다.');
 		} catch (e) {
 			alert('정보가 이미 존재하거나 잘 못 입력된 정보입니다.');
@@ -98,7 +104,7 @@ const employee = () => {
 				/>
 				<TextField
 					className="movie-input"
-					name="emp_grade"
+					name="department_name"
 					label="소속부서"
 					variant="outlined"
 				/>
