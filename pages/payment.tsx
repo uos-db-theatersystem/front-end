@@ -98,6 +98,7 @@ const payment = () => {
 		try {
 			await reservationApi.postPayment(payment);
 			alert('성공적으로 예매가 완료되었습니다.');
+			if (!localStorage.getItem('Token')) localStorage.removeItem('userNum');
 			router.push('/about');
 		} catch (e) {
 			alert('예매 도중 오류가 발생했습니다.');
