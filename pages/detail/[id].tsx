@@ -37,6 +37,8 @@ const detail = () => {
 					</div>
 				</div>
 				<div id="detail-info">
+					<h2>{info.movie_description}</h2>
+					<hr color="black" />
 					<h3>출연진 : {info.actor_names}</h3>
 					<h3>
 						감독 : {info.director_name} | 배급사 : {info.distributor_name} | 등급 :{' '}
@@ -45,7 +47,6 @@ const detail = () => {
 					<h3>
 						장르 : {info.genres} | 상영시간 : {info.running_time}분
 					</h3>
-					<h1>{info.movie_description}</h1>
 				</div>
 			</Layout>
 		)
