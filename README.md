@@ -10,15 +10,15 @@
 
 ## folder
 
-📁root
-  📁utils 
-    📄api.ts ➡ api functions
-    📄functions.ts ➡ functions used in components
-    📄interface.ts ➡ Object types
-    📄states.ts ➡ recoil states
-  📁pages ➡ page folder
-  📁styles ➡ scss folder
-  📁components ➡ component folder used in page
+-📁root
+  -📁utils 
+    -📄api.ts ➡ api functions
+    -📄functions.ts ➡ functions used in components
+    -📄interface.ts ➡ Object types
+    -📄states.ts ➡ recoil states
+  -📁pages ➡ page folder
+  -📁styles ➡ scss folder
+  -📁components ➡ component folder used in page
 
 ## used tech
 
