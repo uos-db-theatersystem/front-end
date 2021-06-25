@@ -9,11 +9,12 @@
 
 ## used tech
 
--   react hook
--   next js
--   typescript
--   recoil
--   material ui
+- react hook
+- next js
+- typescript
+- recoil
+- material ui
+- react suspense
 
 ## how to run
 
