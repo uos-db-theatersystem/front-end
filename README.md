@@ -1,6 +1,6 @@
 # front-end
 
-**데이터베이스 설계 수업 영화 예매 프로젝트 프론트엔드**
+데이터베이스 설계 수업 영화 예매 프로젝트 프론트엔드
 
 ![thumbnail](./thumb.gif)
 
@@ -11,7 +11,7 @@
 ## folder
 
 - 📁root
-  - 📁utils 
+  - 📁utils
     - 📄api.ts ➡ api functions
     - 📄functions.ts ➡ functions used in components
     - 📄interface.ts ➡ Object types
